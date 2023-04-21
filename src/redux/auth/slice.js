@@ -35,42 +35,53 @@ const authSlice = createSlice({
       state.isLoggedIn = true;
     },
   },
-  extraReducers: {
-    [signup.fulfilled](state, action) {
-      state.isRefreshing = false;
-      state.error = false;
-    },
-    [login.fulfilled](state, action) {
-      console.log('ACTION', action);
-      state.user = action.payload.user;
-      state.accessToken = action.payload.accessToken;
+  extraReducers: builder => {
+    builder
+      .addCase(signup.pending, handlePending)
+      .addCase(signup.fulfilled, (state, action) => {
+        state.isRefreshing = false;
+        state.error = false;
+      })
+      .addCase(signup.rejected, handleRejected)
 
-      state.isLoggedIn = true;
-      state.isRefreshing = false;
-      state.error = false;
-    },
-    [logout.fulfilled](state, action) {
-      state.user = {
-        _id: null,
-        name: null,
-        email: null,
-        image: null,
-        transactions: [],
-      };
-      state.accessToken = null;
-      state.refreshToken = null;
+      .addCase(login.pending, handlePending)
+      .addCase(login.fulfilled, (state, action) => {
+        state.user = action.payload.user;
+        state.accessToken = action.payload.accessToken;
 
-      state.isLoggedIn = false;
-      state.isRefreshing = false;
-      state.error = false;
-    },
-    [refreshUser.fulfilled](state, action) {
-      state.user = action.payload;
+        state.isLoggedIn = true;
+        state.isRefreshing = false;
+        state.error = false;
+      })
+      .addCase(login.rejected, handleRejected)
 
-      state.isLoggedIn = true;
-      state.isRefreshing = false;
-      state.error = false;
-    },
+      .addCase(logout.pending, handlePending)
+      .addCase(logout.fulfilled, (state, action) => {
+        state.user = {
+          _id: null,
+          name: null,
+          email: null,
+          image: null,
+          transactions: [],
+        };
+        state.accessToken = null;
+        state.refreshToken = null;
+
+        state.isLoggedIn = false;
+        state.isRefreshing = false;
+        state.error = false;
+      })
+      .addCase(logout.rejected, handleRejected)
+
+      .addCase(refreshUser.pending, handlePending)
+      .addCase(refreshUser.fulfilled, (state, action) => {
+        state.user = action.payload;
+
+        state.isLoggedIn = true;
+        state.isRefreshing = false;
+        state.error = false;
+      })
+      .addCase(refreshUser.rejected, handleRejected);
   },
 });
 

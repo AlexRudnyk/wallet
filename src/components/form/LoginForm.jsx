@@ -35,7 +35,6 @@ export const LoginForm = () => {
   };
 
   const handleSubmit = async (values, { resetForm }) => {
-    console.log('VALUES', values);
     await dispatch(login(values));
     resetForm();
   };
