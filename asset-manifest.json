@@ -1,13 +1,27 @@
 {
   "files": {
-    "main.css": "/wallet/static/css/main.5fc91d28.css",
-    "main.js": "/wallet/static/js/main.0b87843a.js",
+    "main.css": "/wallet/static/css/main.b851e75f.css",
+    "main.js": "/wallet/static/js/main.60fb1214.js",
+    "static/media/Circe-Bold.woff": "/wallet/static/media/Circe-Bold.8a1c4d2d35cdd2d6704b.woff",
+    "static/media/Circe-Regular.woff": "/wallet/static/media/Circe-Regular.b3583e41e063203a7e74.woff",
+    "static/media/loginPageImage_desktop.png": "/wallet/static/media/loginPageImage_desktop.9ba04be8971316586062.png",
+    "static/media/loginPageImage_tablet.png": "/wallet/static/media/loginPageImage_tablet.fa07888e831f6341be4d.png",
+    "static/media/RegistrationPageImage_tablet.png": "/wallet/static/media/RegistrationPageImage_tablet.ddae50acd944c8d2a830.png",
+    "static/media/RegistrationPageImage.png": "/wallet/static/media/RegistrationPageImage.3a70813e7bb97d3c7ce2.png",
+    "static/media/poppins-v20-latin-regular.woff": "/wallet/static/media/poppins-v20-latin-regular.f61407da33b59324fbef.woff",
+    "static/media/poppins-v20-latin-700.woff": "/wallet/static/media/poppins-v20-latin-700.c54a52658bf21b37083d.woff",
+    "static/media/Logo.svg": "/wallet/static/media/Logo.7aa7e611acc11def491e6d21f991b890.svg",
     "index.html": "/wallet/index.html",
-    "main.5fc91d28.css.map": "/wallet/static/css/main.5fc91d28.css.map",
-    "main.0b87843a.js.map": "/wallet/static/js/main.0b87843a.js.map"
+    "static/media/VectorEyeClose.svg": "/wallet/static/media/VectorEyeClose.30c7a6e58df798fc316e2bf23cb8444e.svg",
+    "static/media/lock.svg": "/wallet/static/media/lock.a479bbe012e2ca93edf95bca2c2734b7.svg",
+    "static/media/VectorEyes.svg": "/wallet/static/media/VectorEyes.1664d8f75d35899e9b635c6d03cdb7ac.svg",
+    "static/media/account.svg": "/wallet/static/media/account.16308cbda5cc95779180b76a9489318d.svg",
+    "static/media/email.svg": "/wallet/static/media/email.4ef5e28347bc6cbeb00f9d53d5491b2d.svg",
+    "main.b851e75f.css.map": "/wallet/static/css/main.b851e75f.css.map",
+    "main.60fb1214.js.map": "/wallet/static/js/main.60fb1214.js.map"
   },
   "entrypoints": [
-    "static/css/main.5fc91d28.css",
-    "static/js/main.0b87843a.js"
+    "static/css/main.b851e75f.css",
+    "static/js/main.60fb1214.js"
   ]
 }
