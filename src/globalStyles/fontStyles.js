@@ -6,7 +6,7 @@ import PoppinsBoldWoff from 'fonts/poppins/poppins-v20-latin-700.woff';
 
 import CirceRegularWoff from 'fonts/circe/Circe-Regular.woff';
 
-import CirceBoldWoff from 'fonts/circe/Circle-Bold.woff';
+import CirceBoldWoff from 'fonts/circe/Circe-Bold.woff';
 
 const FontStyles = createGlobalStyle`
 @font-face {

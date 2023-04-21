@@ -1,7 +1,24 @@
-import { Formik, ErrorMessage, Field, Form } from 'formik';
+import { Formik, ErrorMessage } from 'formik';
 import { useDispatch } from 'react-redux';
-import { signup } from '../../redux/auth/operations';
+import { signup, login } from '../../redux/auth/operations';
 import * as yup from 'yup';
+import { toast } from 'react-toastify';
+import { useEffect, useRef, useState } from 'react';
+import { PasswordInput } from './PasswordInput';
+import {
+  Input,
+  InputContainer,
+  InputWrapper,
+  SvgAccount,
+  SvgEnvelope,
+  SvgLock,
+  RegisterButtonRegPage,
+  // LoginButtonRegPage,
+  // ErrorText,
+  FormContainer,
+  ButtonShow,
+  ButtonHide,
+} from './Form.styled';
 
 const schema = yup.object().shape({
   name: yup
@@ -30,23 +47,52 @@ const schema = yup.object().shape({
       'must contain at least: one upper case letter, one lower case letter, only latin-based alphabet'
     )
     .required(),
-  // repeated_password: yup
-  //   .string()
-  //   .oneOf([yup.ref('password')], 'both passwords need to be the same')
-  //   .required('is required field'),
+  repeated_password: yup
+    .string()
+    .oneOf([yup.ref('password')], 'both passwords need to be the same')
+    .required('is required field'),
 });
 
 export const RegisterForm = () => {
+  const [password, setPassword] = useState('');
+  const [type, setType] = useState('password');
+  const confirmPassInFocus = useRef();
+
   const dispatch = useDispatch();
+
+  const Pass = e => {
+    setPassword(e.target.value);
+  };
+
+  useEffect(() => {
+    if (confirmPassInFocus.active) {
+      confirmPassInFocus.current.focus();
+    }
+  }, [confirmPassInFocus]);
+
+  const showHide = () => {
+    let currentType = type === 'input' ? 'password' : 'input';
+    setType(currentType);
+  };
+
   const initialValues = {
     name: '',
     email: '',
     password: '',
-    // repeated_password: '',
+    repeated_password: '',
   };
 
-  const handleSubmit = async (values, { resetForm }) => {
-    await dispatch(signup(values));
+  const handleSubmit = async ({ name, email, password }, { resetForm }) => {
+    const resultSignup = await dispatch(signup({ name, email, password }));
+    toast.success(`Welcome ${name}!`);
+
+    if (resultSignup.type === 'auth/signup/fulfilled') {
+      await dispatch(login({ email, password }));
+    }
+    if (resultSignup.type === 'auth/signup/rejected') {
+      toast.error(resultSignup.payload.message);
+    }
+    setPassword('');
     resetForm();
   };
 
@@ -57,37 +103,47 @@ export const RegisterForm = () => {
         onSubmit={handleSubmit}
         validationSchema={schema}
       >
-        <Form>
-          <div>
-            <label id="email">
-              <Field id="email" name="email" placeholder="Email" type="email" />
-            </label>
+        <FormContainer>
+          <InputContainer>
+            <InputWrapper id="email">
+              <SvgEnvelope />
+              <Input id="email" name="email" placeholder="Email" type="email" />
+            </InputWrapper>
             <ErrorMessage name="email" />
-          </div>
-          <div>
-            <label id="password">
-              <Field
-                id="password"
-                name="password"
-                placeholder="Password"
-                type="password"
+          </InputContainer>
+          <PasswordInput onInput={Pass} password={password} />
+          <InputContainer>
+            <InputWrapper id="repeated_password">
+              {type === 'input' ? (
+                <ButtonShow onClick={showHide} />
+              ) : (
+                <ButtonHide onClick={showHide} />
+              )}
+              <SvgLock />
+              <Input
+                id="repeated_password"
+                name="repeated_password"
+                type={type}
+                placeholder="Confirm password"
+                innerRef={confirmPassInFocus}
               />
-            </label>
-            <ErrorMessage name="password" />
-          </div>
-          <div>
-            <label id="name">
-              <Field
+            </InputWrapper>
+            <ErrorMessage name="repeated_password" />
+          </InputContainer>
+          <InputContainer>
+            <InputWrapper id="name">
+              <SvgAccount />
+              <Input
                 id="name"
                 name="name"
                 placeholder="First name"
                 type="text"
               />
-            </label>
+            </InputWrapper>
             <ErrorMessage name="name" />
-          </div>
-          <button type="submit">Register</button>
-        </Form>
+          </InputContainer>
+          <RegisterButtonRegPage type="submit">Register</RegisterButtonRegPage>
+        </FormContainer>
       </Formik>
     </>
   );

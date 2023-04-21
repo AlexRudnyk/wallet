@@ -1,32 +1,32 @@
-import { createTheme } from 'styled-breakpoints';
-
-const themeStyles = {
+export const theme = {
   colors: {
     white: '#fff',
     black: '#000',
-    text: '#111111',
-    secondaryText: '#181C27',
-    accent: '#F59256',
-    background: '#FDF7F2',
-    inputTxt: '#535353',
-    cardLabelBg: 'rgba(255, 255, 255, 0.6)',
-    accentBtn: '#FF6101',
-    newsTxt: '#111321',
-    date: '#6f6d6b',
-    hintTxt: '#707070',
-    linlTxt: '#3091EB',
-    border: '#f9c4a4',
-    error: '#E2001A',
-    success: '#3CBC81',
-    logoutIcon: '#f9be9a',
-    modalBackdrop: '#11111199',
+    text: '#000000',
+    // secondaryText: '#BDBDBD',
+    accent: '#24CCA7',
+    background: '#E5E5E5',
+    inputTxt: '#BDBDBD',
+    inputBorder: 'E0E0E0',
+    errorMessage: '#d50c0c',
+    // cardLabelBg: 'rgba(255, 255, 255, 0.6)',
+    // accentBtn: '#FF6101',
+    // newsTxt: '#111321',
+    // date: '#6f6d6b',
+    // hintTxt: '#707070',
+    // linlTxt: '#3091EB',
+    btnBorder: '#4A56E2',
+    // error: '#E2001A',
+    // success: '#3CBC81',
+    // logoutIcon: '#f9be9a',
+    modalBackdrop: 'rgba(0, 0, 0, 0.25)',
     transparent: 'transparent',
   },
   space: [0, 2, 4, 8, 16, 32, 64, 128, 256],
   fonts: {
     text: 'Circe',
-    // textMedium: 'Manrope Medium',
     textBold: 'Circe Bold',
+    textSecond: 'Poppins',
     logo: 'Poppins Bold',
   },
   fontSizes: [
@@ -44,12 +44,12 @@ const themeStyles = {
   ],
   fontWeights: {
     normal: 400,
-    medium: 500,
+    // medium: 500,
     bold: 700,
   },
   lineHeights: {
     logo: 1.5,
-    text: 1.375,
+    text: 1.47,
   },
   letterSpacing: {
     logo: '0.07em',
@@ -68,7 +68,7 @@ const themeStyles = {
   radii: {
     none: '0',
     small: '20px',
-    big: '40px',
+    big: '50px',
     circular: '50%',
   },
   shadows: {
@@ -80,16 +80,3 @@ const themeStyles = {
   },
   breakpoints: ['320px', '768px', '1280px'],
 };
-
-const themeBreakpoints = createTheme({
-  mobile: '320px',
-  mobileSizeM: '575px',
-  tablet: '768px',
-  tabletM: '820px',
-  pcSizeS: '912px',
-  pcSizeM: '1024px',
-  pcSizeL: '1200px',
-  pc: '1280px',
-});
-
-export const theme = { ...themeStyles, ...themeBreakpoints };
