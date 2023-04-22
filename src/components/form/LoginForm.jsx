@@ -13,6 +13,8 @@ import {
   RegisterButtonLogPage,
 } from './Form.styled';
 import { ButtonShowAndHide } from './ButtonShow';
+import { toast } from 'react-toastify';
+import axios from 'axios';
 
 const schema = yup.object().shape({
   email: yup
@@ -46,8 +48,14 @@ export const LoginForm = () => {
   };
 
   const handleSubmit = async (values, { resetForm }) => {
-    await dispatch(login(values));
-    resetForm();
+    try {
+      await dispatch(login(values));
+      const { data } = await axios('/api/users/current');
+      toast.success(`Welcome ${data.name}!`);
+      resetForm();
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   const FormError = ({ name }) => {
