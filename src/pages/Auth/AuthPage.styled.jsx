@@ -167,7 +167,7 @@ export const FormContainerRegsiter = styled.div`
 
   @media screen and (min-width: 768px) {
     width: 533px;
-    height: 516px;
+    height: 616px;
     padding: 40px 65px 60px;
     border-radius: ${p => p.theme.radii.small};
     margin-right: auto;

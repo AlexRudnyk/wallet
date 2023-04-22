@@ -44,7 +44,6 @@ export const Input = styled(Field)`
   width: 280px;
   outline: none;
   font-family: ${p => p.theme.fonts.text};
-  /* font-weight: var(--regular); */
   transition: border-bottom 250ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
   @media screen and (min-width: 767px) {
     width: 409.5px;
@@ -53,7 +52,6 @@ export const Input = styled(Field)`
   ::placeholder {
     color: ${p => p.theme.colors.inputTxt};
     font-family: ${p => p.theme.fonts.text};
-    /* font-weight: var(--regular); */
     font-size: ${p => p.theme.fontSizes[3]};
     line-height: 1;
   }
@@ -65,7 +63,6 @@ export const ErrorTextPassword = styled.p`
   color: ${p => p.theme.colors.errorMessage};
   font-size: ${p => p.theme.fontSizes[0]};
   font-family: ${p => p.theme.fonts.text};
-  /* font-weight: var(--regular); */
   @media screen and (min-width: 768px) {
     font-size: ${p => p.theme.fontSizes[1]};
   }
@@ -132,7 +129,6 @@ export const RegisterButtonRegPage = styled.button`
   height: 50px;
   border: none;
   font-family: ${p => p.theme.fonts.text};
-  /* font-weight: var(--regular); */
   font-size: ${p => p.theme.fontSizes[3]};
   line-height: 1;
   letter-spacing: 0.1em;
@@ -143,4 +139,31 @@ export const RegisterButtonRegPage = styled.button`
     transition: 0.7s;
     transform: scale(1.1);
   }
+`;
+
+export const LoginButtonRegPage = styled.button`
+  background-color: ${p => p.theme.colors.white};
+  color: ${p => p.theme.colors.activeBlue};
+  width: 280px;
+  border-radius: ${p => p.theme.radii.big};
+  height: 50px;
+  border: ${p => p.theme.borders.secondBtn};
+  font-family: ${p => p.theme.fonts.text};
+  font-size: ${p => p.theme.fontSizes[3]};
+  line-height: 1;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: 0.5s;
+
+  &:hover {
+    transition: 0.7s;
+    transform: scale(1.1);
+  }
+`;
+
+export const ErrorText = styled.p`
+  position: absolute;
+  color: ${p => p.theme.colors.errorMessage};
+  font-size: ${p => p.theme.fontSizes[1]};
+  font-family: ${p => p.theme.fonts.text};
 `;

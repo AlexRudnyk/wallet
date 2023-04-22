@@ -13,8 +13,8 @@ import {
   SvgEnvelope,
   SvgLock,
   RegisterButtonRegPage,
-  // LoginButtonRegPage,
-  // ErrorText,
+  LoginButtonRegPage,
+  ErrorText,
   FormContainer,
   ButtonShow,
   ButtonHide,
@@ -96,6 +96,15 @@ export const RegisterForm = () => {
     resetForm();
   };
 
+  const FormError = ({ name }) => {
+    return (
+      <ErrorMessage
+        name={name}
+        render={message => <ErrorText>{message}</ErrorText>}
+      />
+    );
+  };
+
   return (
     <>
       <Formik
@@ -109,7 +118,7 @@ export const RegisterForm = () => {
               <SvgEnvelope />
               <Input id="email" name="email" placeholder="Email" type="email" />
             </InputWrapper>
-            <ErrorMessage name="email" />
+            <FormError name="email" />
           </InputContainer>
           <PasswordInput onInput={Pass} password={password} />
           <InputContainer>
@@ -128,7 +137,7 @@ export const RegisterForm = () => {
                 innerRef={confirmPassInFocus}
               />
             </InputWrapper>
-            <ErrorMessage name="repeated_password" />
+            <FormError name="repeated_password" />
           </InputContainer>
           <InputContainer>
             <InputWrapper id="name">
@@ -140,11 +149,14 @@ export const RegisterForm = () => {
                 type="text"
               />
             </InputWrapper>
-            <ErrorMessage name="name" />
+            <FormError name="name" />
           </InputContainer>
           <RegisterButtonRegPage type="submit">Register</RegisterButtonRegPage>
         </FormContainer>
       </Formik>
+      {/* <Link to="/wallet_frontend/login"> */}
+      <LoginButtonRegPage type="button">Log in </LoginButtonRegPage>
+      {/* </Link> */}
     </>
   );
 };
