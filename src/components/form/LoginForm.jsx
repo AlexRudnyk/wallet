@@ -1,7 +1,18 @@
-import { Formik, ErrorMessage, Field, Form } from 'formik';
+import { ErrorMessage, Formik } from 'formik';
 import { useDispatch } from 'react-redux';
 import { login } from '../../redux/auth/operations';
 import * as yup from 'yup';
+import {
+  ErrorText,
+  FormContainer,
+  Input,
+  InputContainer,
+  InputWrapper,
+  SvgEnvelope,
+  LoginButtonLogPage,
+  RegisterButtonLogPage,
+} from './Form.styled';
+import { ButtonShowAndHide } from './ButtonShow';
 
 const schema = yup.object().shape({
   email: yup
@@ -39,32 +50,39 @@ export const LoginForm = () => {
     resetForm();
   };
 
+  const FormError = ({ name }) => {
+    return (
+      <ErrorMessage
+        name={name}
+        render={message => <ErrorText>{message}</ErrorText>}
+      />
+    );
+  };
+
   return (
-    <Formik
-      initialValues={initialValues}
-      validationSchema={schema}
-      onSubmit={handleSubmit}
-    >
-      <Form>
-        <div>
-          <label id="email">
-            <Field id="email" name="email" placeholder="Email" type="email" />
-          </label>
-          <ErrorMessage name="email" />
-        </div>
-        <div>
-          <label id="password">
-            <Field
-              id="password"
-              name="password"
-              placeholder="Password"
-              type="password"
-            />
-          </label>
-          <ErrorMessage name="password" />
-        </div>
-        <button type="submit">Login</button>
-      </Form>
-    </Formik>
+    <>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={schema}
+        onSubmit={handleSubmit}
+      >
+        <FormContainer>
+          <InputContainer>
+            <InputWrapper id="email">
+              <SvgEnvelope />
+              <Input id="email" name="email" placeholder="Email" type="email" />
+            </InputWrapper>
+            <FormError name="email" />
+          </InputContainer>
+          <InputContainer>
+            <ButtonShowAndHide />
+          </InputContainer>
+          <LoginButtonLogPage type="submit">log in</LoginButtonLogPage>
+        </FormContainer>
+      </Formik>
+      {/* <Link to="/wallet_frontend/register"> */}
+      <RegisterButtonLogPage type="button">register</RegisterButtonLogPage>
+      {/* </Link> */}
+    </>
   );
 };

@@ -141,6 +141,26 @@ export const RegisterButtonRegPage = styled.button`
   }
 `;
 
+export const RegisterButtonLogPage = styled.button`
+  background-color: ${p => p.theme.colors.white};
+  color: ${p => p.theme.colors.activeBlue};
+  width: 280px;
+  border-radius: ${p => p.theme.radii.big};
+  height: 50px;
+  border: ${p => p.theme.borders.secondBtn};
+  font-family: ${p => p.theme.fonts.text};
+  font-size: ${p => p.theme.fontSizes[3]};
+  line-height: 1;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: 0.7s;
+
+  &:hover {
+    transition: 0.7s;
+    transform: scale(1.1);
+  }
+`;
+
 export const LoginButtonRegPage = styled.button`
   background-color: ${p => p.theme.colors.white};
   color: ${p => p.theme.colors.activeBlue};
@@ -148,6 +168,26 @@ export const LoginButtonRegPage = styled.button`
   border-radius: ${p => p.theme.radii.big};
   height: 50px;
   border: ${p => p.theme.borders.secondBtn};
+  font-family: ${p => p.theme.fonts.text};
+  font-size: ${p => p.theme.fontSizes[3]};
+  line-height: 1;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: 0.5s;
+
+  &:hover {
+    transition: 0.7s;
+    transform: scale(1.1);
+  }
+`;
+
+export const LoginButtonLogPage = styled.button`
+  background-color: ${p => p.theme.colors.accent};
+  color: ${p => p.theme.colors.white};
+  width: 280px;
+  border-radius: ${p => p.theme.radii.big};
+  height: 50px;
+  border: none;
   font-family: ${p => p.theme.fonts.text};
   font-size: ${p => p.theme.fontSizes[3]};
   line-height: 1;

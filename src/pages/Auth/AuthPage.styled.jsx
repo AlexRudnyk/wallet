@@ -105,7 +105,6 @@ export const Text = styled.p`
     display: flex;
     margin-right: auto;
     font-family: ${p => p.theme.fonts.textSecond};
-    /* font-weight: var(--regular); */
     font-size: 30px;
     line-height: ${p => p.theme.lineHeights.logo};
     margin-left: 40px;
@@ -131,7 +130,7 @@ export const FormWrapper = styled.div`
   }
 `;
 
-export const FormContainer = styled.div`
+export const FormContainerLogin = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
