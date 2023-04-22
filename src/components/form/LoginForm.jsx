@@ -15,6 +15,7 @@ import {
 import { ButtonShowAndHide } from './ButtonShow';
 import { toast } from 'react-toastify';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const schema = yup.object().shape({
   email: yup
@@ -88,9 +89,9 @@ export const LoginForm = () => {
           <LoginButtonLogPage type="submit">log in</LoginButtonLogPage>
         </FormContainer>
       </Formik>
-      {/* <Link to="/wallet_frontend/register"> */}
-      <RegisterButtonLogPage type="button">register</RegisterButtonLogPage>
-      {/* </Link> */}
+      <Link to="/signup">
+        <RegisterButtonLogPage type="button">register</RegisterButtonLogPage>
+      </Link>
     </>
   );
 };

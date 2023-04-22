@@ -19,6 +19,7 @@ import {
   ButtonShow,
   ButtonHide,
 } from './Form.styled';
+import { Link } from 'react-router-dom';
 
 const schema = yup.object().shape({
   name: yup
@@ -83,17 +84,21 @@ export const RegisterForm = () => {
   };
 
   const handleSubmit = async ({ name, email, password }, { resetForm }) => {
-    const resultSignup = await dispatch(signup({ name, email, password }));
-    toast.success(`Welcome ${name}!`);
+    try {
+      const resultSignup = await dispatch(signup({ name, email, password }));
+      toast.success(`Welcome ${name}!`);
 
-    if (resultSignup.type === 'auth/signup/fulfilled') {
-      await dispatch(login({ email, password }));
+      if (resultSignup.type === 'auth/signup/fulfilled') {
+        await dispatch(login({ email, password }));
+      }
+      if (resultSignup.type === 'auth/signup/rejected') {
+        toast.error(resultSignup.payload.message);
+      }
+      setPassword('');
+      resetForm();
+    } catch (error) {
+      console.log(error.message);
     }
-    if (resultSignup.type === 'auth/signup/rejected') {
-      toast.error(resultSignup.payload.message);
-    }
-    setPassword('');
-    resetForm();
   };
 
   const FormError = ({ name }) => {
@@ -154,9 +159,9 @@ export const RegisterForm = () => {
           <RegisterButtonRegPage type="submit">Register</RegisterButtonRegPage>
         </FormContainer>
       </Formik>
-      {/* <Link to="/wallet_frontend/login"> */}
-      <LoginButtonRegPage type="button">Log in </LoginButtonRegPage>
-      {/* </Link> */}
+      <Link to="/login">
+        <LoginButtonRegPage type="button">Log in </LoginButtonRegPage>
+      </Link>
     </>
   );
 };
