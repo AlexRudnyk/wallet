@@ -7,7 +7,7 @@ import { RegisterPage } from '../pages/Auth';
 import { LoginPage } from '../pages/Auth';
 import { GlobalStyle } from '../globalStyles/globalStyle';
 import FontStyles from '../globalStyles/fontStyles';
-// import { PrivateRoute, RestrictedRoute } from './routes';
+import { PrivateRoute, RestrictedRoute } from './routes';
 import { Dashboard } from 'pages/Dashboard';
 
 // const LazyPrivateRoute = lazy(() => import('./routes/PrivateRoute'));
@@ -27,9 +27,22 @@ export const App = () => {
   return (
     <>
       <Routes>
-        <Route path="/signup" element={<RegisterPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route
+          path="/signup"
+          element={
+            <PrivateRoute component={RegisterPage} redirectTo="/dashboard" />
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <RestrictedRoute component={LoginPage} redirectTo="/dashboard" />
+          }
+        />
+        <Route
+          path="/dashboard"
+          element={<PrivateRoute component={Dashboard} redirectTo="/login" />}
+        />
         <Route path="*" element={<Navigate to="/login" />} />
       </Routes>
       <FontStyles />
