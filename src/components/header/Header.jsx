@@ -13,10 +13,8 @@ import {
 import Logo from '../../images/Logo.svg';
 import { NavLink } from 'react-router-dom';
 import Exit from '../../images/Exit.svg';
-import { useState } from 'react';
 
 export const Header = () => {
-  const [show, setShow] = useState(false);
   return (
     <HeaderSection>
       <Container>
@@ -31,7 +29,7 @@ export const Header = () => {
           </ContainerLogo>
           <ContainerLogo>
             <UserName>UserName</UserName>
-            <LogoutButton onClick={() => setShow(!show)}>
+            <LogoutButton>
               <LogoutImg src={Exit} alt="Exit" />
               <Logout>Logout</Logout>
             </LogoutButton>
