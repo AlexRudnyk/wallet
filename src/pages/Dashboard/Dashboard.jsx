@@ -8,6 +8,7 @@ import {
 } from './Dashboard.styled';
 import Media from 'react-media';
 import { Navigation } from 'components/navigation';
+import { Balance } from 'components/balance';
 
 export const Dashboard = () => {
   const { pathname } = useLocation();
@@ -20,7 +21,7 @@ export const Dashboard = () => {
             <DashboardFirstWrapper>
               <div>
                 <Navigation />
-                {/* <Balance /> */}
+                <Balance />
                 <Media queries={{ mobile: { maxWidth: 767 } }}>
                   {matches => matches.mobile && <div>{/* <Currency /> */}</div>}
                 </Media>

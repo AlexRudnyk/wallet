@@ -6,6 +6,7 @@ export const theme = {
     notActiveLink: '#6E78E8',
     activeLink: '#4A56E2',
     text: '#000000',
+    textBalance: '#A6A6A6',
     accent: '#24CCA7',
     background: '#E5E5E5',
     inputTxt: '#BDBDBD',
