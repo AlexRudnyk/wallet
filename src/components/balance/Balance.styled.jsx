@@ -36,7 +36,7 @@ export const BalanceInWallet = styled.div`
   display: flex;
   align-items: center;
   overflow-x: hidden;
-  overflow-x: scroll;
+  /* overflow-x: scroll; */
   &::-webkit-scrollbar {
     height: 0;
   }

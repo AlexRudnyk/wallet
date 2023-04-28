@@ -43,6 +43,11 @@ export const App = () => {
           path="/dashboard"
           element={<PrivateRoute component={Dashboard} redirectTo="/login" />}
         />
+        <Route
+          path="/currency"
+          element={<PrivateRoute component={Dashboard} redirectTo="/login" />}
+        />
+
         <Route path="*" element={<Navigate to="/login" />} />
       </Routes>
       <FontStyles />
