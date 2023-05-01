@@ -1,3 +1,3 @@
 export const DiagramTab = () => {
-  return <></>;
+  return <>DiagramTab</>;
 };
