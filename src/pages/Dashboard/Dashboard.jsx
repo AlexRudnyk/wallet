@@ -20,12 +20,9 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { ModalAddTransactions } from 'components/modalAddTransactions';
 // import { useDispatch } from 'react-redux';
-// import { useSelector } from 'react-redux';
-// import { selectTransactions } from 'redux/transactions/selectors';
-// import { getTransactions } from 'redux/transactions/operations';
+// import { addTransaction } from 'redux/transactions/operations';
 
 export const Dashboard = () => {
-  // const transactions = useSelector(selectTransactions);
   const [transactions, setTransactions] = useState([]);
   const [isModalAddTransactionOpen, setIsModalAddTransactionOpen] =
     useState(false);
@@ -33,7 +30,6 @@ export const Dashboard = () => {
   // const dispatch = useDispatch();
 
   useEffect(() => {
-    // dispatch(getTransactions());
     async function getTransactions() {
       try {
         const { data } = await axios.get(
@@ -54,6 +50,19 @@ export const Dashboard = () => {
 
   const handleModalClose = () => {
     setIsModalAddTransactionOpen(!isModalAddTransactionOpen);
+  };
+
+  const handleSubmit = async values => {
+    try {
+      const { data } = await axios.post(
+        'http://localhost:3030/api/transactions',
+        values
+      );
+      const newTransactionsArray = [...transactions, data];
+      setTransactions(newTransactionsArray);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -104,7 +113,10 @@ export const Dashboard = () => {
             </DashboardSecondWrapper>
           </DashboardWrapper>
           {isModalAddTransactionOpen && (
-            <ModalAddTransactions onClose={handleModalClose} />
+            <ModalAddTransactions
+              onClose={handleModalClose}
+              onSubmit={handleSubmit}
+            />
           )}
         </Container>
       </Main>

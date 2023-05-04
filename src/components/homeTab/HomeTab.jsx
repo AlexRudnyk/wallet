@@ -5,6 +5,19 @@ import {
 } from './HomeTab.styled';
 
 export const HomeTab = ({ transactionsList }) => {
+  function formatDate(date) {
+    const dateObj = new Date(date);
+    let year = dateObj.getFullYear();
+    let month = dateObj.getMonth() + 1;
+    let day = dateObj.getDate() + 1;
+    if (day < 10) {
+      day = '0' + day;
+    }
+    if (month < 10) {
+      month = '0' + month;
+    }
+    return day + '.' + month + '.' + year;
+  }
   return (
     <>
       <TitlesTable>
@@ -28,10 +41,10 @@ export const HomeTab = ({ transactionsList }) => {
         </li>
       </TitlesTable>
       <ul>
-        {transactionsList.map(transaction => {
+        {transactionsList?.map(transaction => {
           return (
             <TransactionsTableItem key={transaction._id}>
-              <div>Date</div>
+              <div>{formatDate(transaction.date)}</div>
               <div>{transaction.type}</div>
               <div>{transaction.category}</div>
               <div>{transaction.comment}</div>

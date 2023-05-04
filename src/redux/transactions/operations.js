@@ -14,3 +14,15 @@ export const getTransactions = createAsyncThunk(
     }
   }
 );
+
+export const addTransaction = createAsyncThunk(
+  'transactions/addTransaction',
+  async (values, thunkAPI) => {
+    try {
+      const { data } = await axios.post('/api/transactions', values);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);

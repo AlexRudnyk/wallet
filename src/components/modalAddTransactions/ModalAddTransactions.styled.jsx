@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { ReactComponent as Close } from '../../images/Сlose.svg';
+import { Form, Field } from 'formik';
 
 export const Backdrop = styled.div`
   position: fixed;
@@ -29,4 +31,45 @@ export const ModalWindow = styled.div`
   height: 508px;
   background-color: ${p => p.theme.colors.white};
   border-radius: ${p => p.theme.radii.small};
+`;
+
+export const ButtonClose = styled.button`
+  display: none;
+  @media screen and (min-width: 768px) {
+    display: block;
+    width: 20px;
+    height: 20px;
+    border: none;
+    outline: none;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    background-color: var(--white);
+  }
+`;
+
+export const CloseSvg = styled(Close)`
+  text-align: center;
+  width: 16px;
+  height: 16px;
+`;
+
+export const ModalForm = styled(Form)`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const ModalInput = styled(Field)`
+  &[type='number'] {
+    -moz-appearance: textfield;
+  }
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+`;
+
+export const InputWrapper = styled.div`
+  display: flex;
 `;
