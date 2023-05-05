@@ -2,6 +2,9 @@ import {
   TitlesTable,
   TitleTableText,
   TransactionsTableItem,
+  TransactionsTable,
+  TransactionsTableItemContainer,
+  TitlesTableItem,
 } from './HomeTab.styled';
 
 export const HomeTab = ({ transactionsList }) => {
@@ -9,51 +12,63 @@ export const HomeTab = ({ transactionsList }) => {
     const dateObj = new Date(date);
     let year = dateObj.getFullYear();
     let month = dateObj.getMonth() + 1;
-    let day = dateObj.getDate() + 1;
+    let day = dateObj.getDate();
     if (day < 10) {
       day = '0' + day;
     }
     if (month < 10) {
       month = '0' + month;
     }
-    return day + '.' + month + '.' + year;
+    return day + '.' + month + '.' + year.toString().substr(-2);
   }
   return (
     <>
       <TitlesTable>
-        <li>
+        <TitlesTableItem>
           <TitleTableText>Date</TitleTableText>
-        </li>
-        <li>
+        </TitlesTableItem>
+        <TitlesTableItem>
           <TitleTableText>Type</TitleTableText>
-        </li>
-        <li>
+        </TitlesTableItem>
+        <TitlesTableItem>
           <TitleTableText>Category</TitleTableText>
-        </li>
-        <li>
+        </TitlesTableItem>
+        <TitlesTableItem>
           <TitleTableText>Comment</TitleTableText>
-        </li>
-        <li>
+        </TitlesTableItem>
+        <TitlesTableItem>
           <TitleTableText>Sum</TitleTableText>
-        </li>
-        <li>
+        </TitlesTableItem>
+        <TitlesTableItem>
           <TitleTableText>Balance</TitleTableText>
-        </li>
+        </TitlesTableItem>
       </TitlesTable>
-      <ul>
+      <TransactionsTable>
         {transactionsList?.map(transaction => {
           return (
             <TransactionsTableItem key={transaction._id}>
-              <div>{formatDate(transaction.date)}</div>
-              <div>{transaction.type}</div>
-              <div>{transaction.category}</div>
-              <div>{transaction.comment}</div>
-              <div>{transaction.sum}</div>
-              <div>{transaction.balance}</div>
+              <TransactionsTableItemContainer>
+                {formatDate(transaction.date)}
+              </TransactionsTableItemContainer>
+              <TransactionsTableItemContainer>
+                {transaction.type}
+              </TransactionsTableItemContainer>
+              <TransactionsTableItemContainer>
+                {transaction.category}
+              </TransactionsTableItemContainer>
+              <TransactionsTableItemContainer>
+                {transaction.comment}
+              </TransactionsTableItemContainer>
+              <TransactionsTableItemContainer>
+                {transaction.sum}
+              </TransactionsTableItemContainer>
+              <TransactionsTableItemContainer>
+                {transaction.balance}
+              </TransactionsTableItemContainer>
             </TransactionsTableItem>
           );
         })}
-      </ul>
+      </TransactionsTable>
     </>
   );
 };

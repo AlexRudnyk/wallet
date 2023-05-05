@@ -8,8 +8,9 @@ import {
 } from './Balance.styled';
 import Media from 'react-media';
 
-export const Balance = () => {
+export const Balance = ({ balance }) => {
   const { pathname } = useLocation();
+
   return (
     <>
       {pathname === '/dashboard' && (
@@ -17,7 +18,7 @@ export const Balance = () => {
           <BalanceTitle>your balance</BalanceTitle>
           <BalanceInWallet>
             <IconInBalance>₴ </IconInBalance>
-            <BalanceMain>1000125.00</BalanceMain>
+            <BalanceMain>{balance}</BalanceMain>
           </BalanceInWallet>
         </ContainerBalance>
       )}
@@ -30,7 +31,7 @@ export const Balance = () => {
 
               <BalanceInWallet>
                 <IconInBalance>₴ </IconInBalance>
-                <BalanceMain>1000125.00</BalanceMain>
+                <BalanceMain>{balance}</BalanceMain>
               </BalanceInWallet>
             </ContainerBalance>
           )

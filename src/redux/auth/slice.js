@@ -7,7 +7,7 @@ const initialState = {
     name: null,
     email: null,
     image: null,
-    transactions: [],
+    balance: null,
   },
   accessToken: null,
   refreshToken: null,
@@ -30,9 +30,8 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    setToken(state, action) {
-      state.accessToken = action.payload;
-      state.isLoggedIn = true;
+    setBalance(state, action) {
+      state.user.balance = action.payload;
     },
   },
   extraReducers: builder => {
@@ -62,7 +61,7 @@ const authSlice = createSlice({
           name: null,
           email: null,
           image: null,
-          transactions: [],
+          balance: null,
         };
         state.accessToken = null;
         state.refreshToken = null;
@@ -85,5 +84,5 @@ const authSlice = createSlice({
   },
 });
 
-export const { setToken } = authSlice.actions;
+export const { setBalance } = authSlice.actions;
 export const authReducer = authSlice.reducer;

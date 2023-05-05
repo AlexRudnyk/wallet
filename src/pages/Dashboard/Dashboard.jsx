@@ -19,29 +19,24 @@ import { HomeTab } from 'components/homeTab';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { ModalAddTransactions } from 'components/modalAddTransactions';
-// import { useDispatch } from 'react-redux';
-// import { addTransaction } from 'redux/transactions/operations';
+import { useDispatch } from 'react-redux';
+import { addTransaction, getTransactions } from 'redux/transactions/operations';
+import { setBalance } from 'redux/auth/slice';
+import { useSelector } from 'react-redux';
+import { selectTransactions } from 'redux/transactions/selectors';
+import { selectUser } from 'redux/auth/selectors';
 
 export const Dashboard = () => {
-  const [transactions, setTransactions] = useState([]);
+  const transactions = useSelector(selectTransactions);
+  const { balance } = useSelector(selectUser);
   const [isModalAddTransactionOpen, setIsModalAddTransactionOpen] =
     useState(false);
   const { pathname } = useLocation();
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    async function getTransactions() {
-      try {
-        const { data } = await axios.get(
-          'http://localhost:3030/api/transactions'
-        );
-        setTransactions(data);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    getTransactions();
-  }, []);
+    dispatch(getTransactions());
+  }, [dispatch]);
 
   const handleOnAddTransctionButtonClick = e => {
     e.preventDefault();
@@ -52,17 +47,19 @@ export const Dashboard = () => {
     setIsModalAddTransactionOpen(!isModalAddTransactionOpen);
   };
 
-  const handleSubmit = async values => {
-    try {
-      const { data } = await axios.post(
-        'http://localhost:3030/api/transactions',
-        values
-      );
-      const newTransactionsArray = [...transactions, data];
-      setTransactions(newTransactionsArray);
-    } catch (error) {
-      console.log(error);
+  const handleSubmit = values => {
+    dispatch(addTransaction(values));
+    async function getBalance() {
+      try {
+        const { data } = await axios.get(
+          'http://localhost:3030/api/users/balance'
+        );
+        dispatch(setBalance(data));
+      } catch (error) {
+        console.log(error.message);
+      }
     }
+    getBalance();
   };
 
   return (
@@ -74,7 +71,7 @@ export const Dashboard = () => {
             <DashboardFirstWrapper>
               <div>
                 <Navigation />
-                <Balance />
+                <Balance balance={balance} />
                 <Media queries={{ mobile: { maxWidth: 767 } }}>
                   {matches =>
                     matches.mobile && (
