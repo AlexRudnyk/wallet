@@ -1,4 +1,6 @@
 import styled, { createGlobalStyle } from 'styled-components';
+import bgTabImg from '../images/BackgrTablet-min.png';
+import bgDeskImg from '../images/BackgrDes-min.png';
 
 export const GlobalStyle = createGlobalStyle`
     html {
@@ -20,7 +22,21 @@ export const GlobalStyle = createGlobalStyle`
     letter-spacing: ${p => p.theme.letterSpacing.text};
 
     background-color: ${p => p.theme.colors.background};
+
+      @media screen and (min-width: 768px) {
+    background: url(${bgTabImg});
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
   }
+
+     @media screen and (min-width: 1280px) {
+    background-image: url(${bgDeskImg});
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+}
 
   code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',

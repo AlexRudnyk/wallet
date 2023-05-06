@@ -1,5 +1,17 @@
 import styled from 'styled-components';
 
+export const HomeTabContainer = styled.div`
+  height: 312px;
+  overflow-y: hidden;
+  overflow-y: scroll;
+
+  @media screen and (min-width: 1280px) {
+    height: 480px;
+    overflow-y: hidden;
+    overflow-y: scroll;
+  }
+`;
+
 export const TitlesTable = styled.ul`
   @media screen and (min-width: 768px) {
     display: flex;

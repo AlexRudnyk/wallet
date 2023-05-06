@@ -15,6 +15,7 @@ import {
   TableItemCommentContainer,
   TableItemSumContainer,
   TableItemBalanceContainer,
+  HomeTabContainer,
 } from './HomeTab.styled';
 
 export const HomeTab = ({ transactionsList }) => {
@@ -32,7 +33,7 @@ export const HomeTab = ({ transactionsList }) => {
     return day + '.' + month + '.' + year.toString().substr(-2);
   }
   return (
-    <>
+    <HomeTabContainer>
       <TitlesTable>
         <DateTableItem>
           <TitleTableText>Date</TitleTableText>
@@ -77,6 +78,6 @@ export const HomeTab = ({ transactionsList }) => {
           );
         })}
       </TransactionsTable>
-    </>
+    </HomeTabContainer>
   );
 };
