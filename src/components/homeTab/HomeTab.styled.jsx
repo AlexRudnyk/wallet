@@ -22,16 +22,68 @@ export const TitleTableText = styled.p`
 
 export const TransactionsTableItem = styled.li`
   display: flex;
+  align-items: center;
+  /* &:not(:last-child) {
+    margin-bottom: 10px;
+  } */
 `;
 
-export const TransactionsTableItemContainer = styled.div`
-  width: calc(100% / 6);
-  text-align: center;
+export const TableItemDataContainer = styled.div`
+  flex: 2;
+  padding: 10px 0;
 `;
 
-export const TitlesTableItem = styled.li`
-  width: calc(100% / 6);
-  text-align: center;
+export const TableItemTypeContainer = styled.div`
+  flex: 1.5;
+`;
+
+export const TableItemCategoryContainer = styled.div`
+  flex: 2.5;
+`;
+
+export const TableItemCommentContainer = styled.div`
+  flex: 3;
+`;
+
+export const TableItemSumContainer = styled.div`
+  flex: 1.5;
+  text-align: end;
+`;
+
+export const TableItemBalanceContainer = styled.div`
+  flex: 1.5;
+  text-align: end;
+`;
+
+// export const TitlesTableItem = styled.li`
+//   width: calc(100% / 6);
+//   text-align: center;
+// `;
+
+export const DateTableItem = styled.li`
+  flex: 2;
+`;
+
+export const TypeTableItem = styled.li`
+  flex: 1.5;
+`;
+
+export const CategoryTableItem = styled.li`
+  flex: 2.5;
+`;
+
+export const CommentTableItem = styled.li`
+  flex: 3;
+`;
+
+export const SumTableItem = styled.li`
+  flex: 1.5;
+  text-align: end;
+`;
+
+export const BalanceTableItem = styled.li`
+  flex: 1.5;
+  text-align: end;
 `;
 
 export const TransactionsTable = styled.ul`

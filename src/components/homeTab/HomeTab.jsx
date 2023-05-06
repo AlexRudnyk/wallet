@@ -3,8 +3,18 @@ import {
   TitleTableText,
   TransactionsTableItem,
   TransactionsTable,
-  TransactionsTableItemContainer,
-  TitlesTableItem,
+  DateTableItem,
+  TypeTableItem,
+  CategoryTableItem,
+  CommentTableItem,
+  SumTableItem,
+  BalanceTableItem,
+  TableItemDataContainer,
+  TableItemTypeContainer,
+  TableItemCategoryContainer,
+  TableItemCommentContainer,
+  TableItemSumContainer,
+  TableItemBalanceContainer,
 } from './HomeTab.styled';
 
 export const HomeTab = ({ transactionsList }) => {
@@ -24,47 +34,45 @@ export const HomeTab = ({ transactionsList }) => {
   return (
     <>
       <TitlesTable>
-        <TitlesTableItem>
+        <DateTableItem>
           <TitleTableText>Date</TitleTableText>
-        </TitlesTableItem>
-        <TitlesTableItem>
+        </DateTableItem>
+        <TypeTableItem>
           <TitleTableText>Type</TitleTableText>
-        </TitlesTableItem>
-        <TitlesTableItem>
+        </TypeTableItem>
+        <CategoryTableItem>
           <TitleTableText>Category</TitleTableText>
-        </TitlesTableItem>
-        <TitlesTableItem>
+        </CategoryTableItem>
+        <CommentTableItem>
           <TitleTableText>Comment</TitleTableText>
-        </TitlesTableItem>
-        <TitlesTableItem>
+        </CommentTableItem>
+        <SumTableItem>
           <TitleTableText>Sum</TitleTableText>
-        </TitlesTableItem>
-        <TitlesTableItem>
+        </SumTableItem>
+        <BalanceTableItem>
           <TitleTableText>Balance</TitleTableText>
-        </TitlesTableItem>
+        </BalanceTableItem>
       </TitlesTable>
       <TransactionsTable>
         {transactionsList?.map(transaction => {
           return (
             <TransactionsTableItem key={transaction._id}>
-              <TransactionsTableItemContainer>
+              <TableItemDataContainer>
                 {formatDate(transaction.date)}
-              </TransactionsTableItemContainer>
-              <TransactionsTableItemContainer>
-                {transaction.type}
-              </TransactionsTableItemContainer>
-              <TransactionsTableItemContainer>
+              </TableItemDataContainer>
+              <TableItemTypeContainer>
+                {transaction.type === 'income' ? '+' : '–'}
+              </TableItemTypeContainer>
+              <TableItemCategoryContainer>
                 {transaction.category}
-              </TransactionsTableItemContainer>
-              <TransactionsTableItemContainer>
+              </TableItemCategoryContainer>
+              <TableItemCommentContainer>
                 {transaction.comment}
-              </TransactionsTableItemContainer>
-              <TransactionsTableItemContainer>
-                {transaction.sum}
-              </TransactionsTableItemContainer>
-              <TransactionsTableItemContainer>
+              </TableItemCommentContainer>
+              <TableItemSumContainer>{transaction.sum}</TableItemSumContainer>
+              <TableItemBalanceContainer>
                 {transaction.balance}
-              </TransactionsTableItemContainer>
+              </TableItemBalanceContainer>
             </TransactionsTableItem>
           );
         })}
