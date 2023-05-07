@@ -28,9 +28,6 @@ import { selectUser } from 'redux/auth/selectors';
 
 export const Dashboard = () => {
   const transactions = useSelector(selectTransactions);
-  console.log('ARRAY', transactions);
-  // console.log('IS_ARRAY', transactions.isArray());
-
   const { balance } = useSelector(selectUser);
   const [isModalAddTransactionOpen, setIsModalAddTransactionOpen] =
     useState(false);

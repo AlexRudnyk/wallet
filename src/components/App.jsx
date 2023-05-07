@@ -14,10 +14,7 @@ import { Dashboard } from 'pages/Dashboard';
 // const LazyRestrictedRoute = lazy(() => import('./routes/RestrictedRoute'));
 
 export const App = () => {
-  const {
-    // isRefreshing,
-    isLoggedIn,
-  } = useAuth();
+  const { isRefreshing, isLoggedIn } = useAuth();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -25,33 +22,38 @@ export const App = () => {
   }, [dispatch, isLoggedIn]);
 
   return (
-    <>
-      <Routes>
-        <Route
-          path="/signup"
-          element={
-            <RestrictedRoute component={RegisterPage} redirectTo="/dashboard" />
-          }
-        />
-        <Route
-          path="/login"
-          element={
-            <RestrictedRoute component={LoginPage} redirectTo="/dashboard" />
-          }
-        />
-        <Route
-          path="/dashboard"
-          element={<PrivateRoute component={Dashboard} redirectTo="/login" />}
-        />
-        <Route
-          path="/currency"
-          element={<PrivateRoute component={Dashboard} redirectTo="/login" />}
-        />
+    !isRefreshing && (
+      <>
+        <Routes>
+          <Route
+            path="/signup"
+            element={
+              <RestrictedRoute
+                component={RegisterPage}
+                redirectTo="/dashboard"
+              />
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <RestrictedRoute component={LoginPage} redirectTo="/dashboard" />
+            }
+          />
+          <Route
+            path="/dashboard"
+            element={<PrivateRoute component={Dashboard} redirectTo="/login" />}
+          />
+          <Route
+            path="/currency"
+            element={<PrivateRoute component={Dashboard} redirectTo="/login" />}
+          />
 
-        <Route path="*" element={<Navigate to="/login" />} />
-      </Routes>
-      <FontStyles />
-      <GlobalStyle />
-    </>
+          <Route path="*" element={<Navigate to="/login" />} />
+        </Routes>
+        <FontStyles />
+        <GlobalStyle />
+      </>
+    )
   );
 };
