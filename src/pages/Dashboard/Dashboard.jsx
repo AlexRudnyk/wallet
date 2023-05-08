@@ -62,6 +62,8 @@ export const Dashboard = () => {
     getBalance();
   };
 
+  const sortedTransactions = [...transactions].reverse();
+
   return (
     <>
       <Header />
@@ -97,7 +99,7 @@ export const Dashboard = () => {
               {/* {pathname === '/diagram' && <DiagramTab />} */}
               {pathname === '/dashboard' && (
                 <>
-                  <HomeTab transactionsList={transactions} />
+                  <HomeTab transactionsList={sortedTransactions} />
                   <ButtonAddTransactions
                     type="button"
                     onClick={handleOnAddTransctionButtonClick}
