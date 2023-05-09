@@ -10,7 +10,7 @@ export const theme = {
     accent: '#24CCA7',
     background: '#E5E5E5',
     inputTxt: '#BDBDBD',
-    inputBorder: 'E0E0E0',
+    inputBorder: '#E0E0E0',
     errorMessage: '#d50c0c',
     modalBackdrop: 'rgba(0, 0, 0, 0.25)',
     transparent: 'transparent',

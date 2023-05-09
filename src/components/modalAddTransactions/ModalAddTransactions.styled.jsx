@@ -19,6 +19,10 @@ export const Backdrop = styled.div`
 `;
 
 export const ModalWindow = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
   position: absolute;
   overflow: auto;
 
@@ -31,6 +35,8 @@ export const ModalWindow = styled.div`
   height: 508px;
   background-color: ${p => p.theme.colors.white};
   border-radius: ${p => p.theme.radii.small};
+
+  padding: 40px;
 `;
 
 export const ButtonClose = styled.button`
@@ -54,12 +60,30 @@ export const CloseSvg = styled(Close)`
   height: 16px;
 `;
 
+export const ModalTitle = styled.h2`
+  margin-bottom: 40px;
+  font-family: ${p => p.theme.fonts.textSecond};
+  font-style: normal;
+  font-weight: ${p => p.theme.fontWeights.normal};
+  font-size: ${p => p.theme.fontSizes[5]};
+  line-height: ${p => p.theme.lineHeights.logo};
+  text-shadow: 0px 4px 4px ${p => p.theme.colors.modalBackdrop};
+  @media screen and (min-width: 768px) {
+    line-height: ${p => p.theme.lineHeights.logo};
+    font-family: ${p => p.theme.fonts.textSecond};
+    font-weight: ${p => p.theme.fontWeights.normal};
+    font-size: 30px;
+  }
+`;
+
 export const ModalForm = styled(Form)`
   display: flex;
   flex-direction: column;
+  align-items: center;
 `;
 
 export const ModalInput = styled(Field)`
+  margin-bottom: 40px;
   &[type='number'] {
     -moz-appearance: textfield;
   }
@@ -72,4 +96,32 @@ export const ModalInput = styled(Field)`
 
 export const InputWrapper = styled.div`
   display: flex;
+`;
+
+export const SwitcherButtonVert = styled.div`
+  width: 2px;
+  height: 20px;
+  background-color: ${p => p.theme.colors.white};
+  position: absolute;
+  top: 12px;
+  left: 21px;
+`;
+
+export const SwitcherButtonGor = styled.div`
+  width: 20px;
+  height: 2px;
+  background-color: ${p => p.theme.colors.white};
+  position: absolute;
+  left: 12px;
+  top: 20px;
+`;
+
+export const SwitchWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 40px;
+  border: 1px solid ${p => p.theme.colors.inputBorder};
+  border-radius: 30px;
 `;
