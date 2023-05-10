@@ -32,7 +32,7 @@ export const ModalWindow = styled.div`
   max-height: 95%;
 
   width: 540px;
-  height: 508px;
+  height: 570px;
   background-color: ${p => p.theme.colors.white};
   border-radius: ${p => p.theme.radii.small};
 
@@ -124,4 +124,42 @@ export const SwitchWrapper = styled.div`
   height: 40px;
   border: 1px solid ${p => p.theme.colors.inputBorder};
   border-radius: 30px;
+  margin-bottom: 40px;
+`;
+
+export const Button = styled.button`
+  display: inline;
+  width: 300px;
+  height: 50px;
+  font-family: ${p => p.theme.fonts.text};
+  font-weight: ${p => p.theme.fontWeights.normal};
+  font-size: ${p => p.theme.fontSizes[3]};
+  line-height: ${p => p.theme.lineHeights.logo};
+  text-align: center;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: 0.5s;
+
+  &:hover {
+    transition: 0.7s;
+    transform: scale(1.1);
+  }
+`;
+
+export const AddTransactionsBtn = styled(Button)`
+  border: none;
+  margin-bottom: 20px;
+  background: ${p => p.theme.colors.accent};
+  border-radius: ${p => p.theme.radii.small};
+  color: ${p => p.theme.colors.white};
+`;
+
+export const CancelTransactionsBtn = styled(Button)`
+  background: ${p => p.theme.colors.white};
+  border: 1px solid ${p => p.theme.colors.activeBlue};
+  border-radius: ${p => p.theme.radii.small};
+  color: ${p => p.theme.colors.activeBlue};
 `;

@@ -11,6 +11,8 @@ import {
   SwitcherButtonVert,
   SwitcherButtonGor,
   SwitchWrapper,
+  AddTransactionsBtn,
+  CancelTransactionsBtn,
 } from './ModalAddTransactions.styled';
 import { createPortal } from 'react-dom';
 import { Formik, ErrorMessage } from 'formik';
@@ -19,14 +21,9 @@ import Switch from 'react-switch';
 const modalRoot = document.querySelector('#modal-root');
 
 export const ModalAddTransactions = ({ onClose, onSubmit }) => {
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState(true);
 
   const type = checked ? 'income' : 'expense';
-
-  const handleChange = nextChecked => {
-    setChecked(nextChecked);
-    console.log('TYPE', type);
-  };
 
   useEffect(() => {
     const onEscClick = e => {
@@ -45,45 +42,9 @@ export const ModalAddTransactions = ({ onClose, onSubmit }) => {
   };
 
   const handleSubmit = (values, { resetForm }) => {
-    console.log('VALUES', values);
     onSubmit(values);
     resetForm();
     onClose();
-  };
-
-  const CustomSwitch = props => {
-    return (
-      <>
-        <SwitchWrapper>
-          <Switch
-            onChange={handleChange}
-            checked={checked}
-            className="react-switch"
-            height={30}
-            width={78}
-            handleDiameter={44}
-            offColor="#FFFFFF"
-            onColor="#FFFFFF"
-            offHandleColor="#24CCA7"
-            onHandleColor="#FF6596"
-            boxShadow={
-              checked
-                ? '0px 6px 15px rgba(255, 101, 150, 0.5)'
-                : '0px 6px 15px rgba(36, 204, 167, 0.5)'
-            }
-            uncheckedIcon={false}
-            checkedIcon={false}
-            uncheckedHandleIcon={
-              <>
-                <SwitcherButtonVert />
-                <SwitcherButtonGor />
-              </>
-            }
-            checkedHandleIcon={<SwitcherButtonGor />}
-          />
-        </SwitchWrapper>
-      </>
-    );
   };
 
   return createPortal(
@@ -92,10 +53,10 @@ export const ModalAddTransactions = ({ onClose, onSubmit }) => {
         <ButtonClose type="button" onClick={onClose}>
           <CloseSvg />
         </ButtonClose>
-        <ModalTitle>Add Transaction</ModalTitle>
+        <ModalTitle>Add transaction</ModalTitle>
         <Formik
           initialValues={{
-            type: '',
+            type: 'expense',
             category: '',
             sum: '',
             date: new Date(),
@@ -103,71 +64,79 @@ export const ModalAddTransactions = ({ onClose, onSubmit }) => {
           }}
           onSubmit={handleSubmit}
         >
-          <ModalForm>
-            {/* <div>
-              <ModalInput type="radio" id="income" name="type" value="income" />
-              <label htmlFor="income">Income</label>
-
-              <ModalInput
-                type="radio"
-                id="expense"
-                name="type"
-                value="expense"
-              />
-              <label htmlFor="expense">Expense</label>
-            </div> */}
-
-            <ModalInput component={CustomSwitch} />
-            {/* <SwitchWrapper> */}
-            {/* <Switch
-                onChange={handleChange}
-                checked={checked}
-                className="react-switch"
-                height={30}
-                width={78}
-                handleDiameter={44}
-                offColor="#FFFFFF"
-                onColor="#FFFFFF"
-                offHandleColor="#24CCA7"
-                onHandleColor="#FF6596"
-                boxShadow={
-                  checked
-                    ? '0px 6px 15px rgba(255, 101, 150, 0.5)'
-                    : '0px 6px 15px rgba(36, 204, 167, 0.5)'
-                }
-                uncheckedIcon={false}
-                checkedIcon={false}
-                uncheckedHandleIcon={
-                  <>
-                    <SwitcherButtonVert />
-                    <SwitcherButtonGor />
-                  </>
-                }
-                checkedHandleIcon={<SwitcherButtonGor />}
-              /> */}
-            {/* </SwitchWrapper> */}
-            <ModalInput component="select" name="category">
-              <option value="" hidden>
-                Choose a category
-              </option>
-              <option value="salary">Salary</option>
-              <option value="bonus">Bonus</option>
-              <option value="other">Other</option>
-            </ModalInput>
-            <ErrorMessage name="category" />
-            <InputWrapper>
-              <ModalInput type="number" name="sum" placeholder="0.00" />
-              <ErrorMessage name="sum" />
-              <ModalInput type="date" name="date" placeholder="Enter date" />
-              <ErrorMessage name="date" />
-            </InputWrapper>
-            <ModalInput name="comment" placeholder="Comment" />
-            <ErrorMessage name="comment" />
-            <button type="submit">Add</button>
-            <button type="button" onClick={() => onClose()}>
-              Cancel
-            </button>
-          </ModalForm>
+          {({ values, setFieldValue }) => (
+            <ModalForm>
+              <SwitchWrapper>
+                <Switch
+                  name="type"
+                  onChange={nextChecked => {
+                    setChecked(nextChecked);
+                    setFieldValue('type', type);
+                  }}
+                  checked={checked}
+                  className="react-switch"
+                  height={30}
+                  width={78}
+                  handleDiameter={44}
+                  offColor="#FFFFFF"
+                  onColor="#FFFFFF"
+                  offHandleColor="#24CCA7"
+                  onHandleColor="#FF6596"
+                  boxShadow={
+                    checked
+                      ? '0px 6px 15px rgba(255, 101, 150, 0.5)'
+                      : '0px 6px 15px rgba(36, 204, 167, 0.5)'
+                  }
+                  uncheckedIcon={false}
+                  checkedIcon={false}
+                  uncheckedHandleIcon={
+                    <>
+                      <SwitcherButtonVert />
+                      <SwitcherButtonGor />
+                    </>
+                  }
+                  checkedHandleIcon={<SwitcherButtonGor />}
+                />
+              </SwitchWrapper>
+              {type === 'income' ? (
+                <ModalInput component="select" name="category">
+                  <option value="" hidden>
+                    Choose a category
+                  </option>
+                  <option value="house">House</option>
+                  <option value="food">Food</option>
+                  <option value="children">Children</option>
+                  <option value="education">Education</option>
+                  <option value="sports">Sports</option>
+                  <option value="car">Car</option>
+                  <option value="other">Other</option>
+                </ModalInput>
+              ) : (
+                <ModalInput component="select" name="category">
+                  <option value="" hidden>
+                    Choose a category
+                  </option>
+                  <option value="salary">Salary</option>
+                  <option value="bonus">Bonus</option>
+                  <option value="gift">Gift</option>
+                  <option value="other">Other</option>
+                </ModalInput>
+              )}
+              <ErrorMessage name="category" />
+              <InputWrapper>
+                <ModalInput type="number" name="sum" placeholder="0.00" />
+                <ErrorMessage name="sum" />
+                <ModalInput type="date" name="date" placeholder="Enter date" />
+                <ErrorMessage name="date" />
+              </InputWrapper>
+              <ModalInput name="comment" placeholder="Comment" />
+              <ErrorMessage name="comment" />
+              <AddTransactionsBtn type="submit">Add</AddTransactionsBtn>
+              <CancelTransactionsBtn type="button" onClick={() => onClose()}>
+                Cancel
+              </CancelTransactionsBtn>
+            </ModalForm>
+          )}
         </Formik>
       </ModalWindow>
     </Backdrop>,
