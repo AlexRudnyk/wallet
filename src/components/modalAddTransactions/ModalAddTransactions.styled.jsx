@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { ReactComponent as Close } from '../../images/Сlose.svg';
 import { Form, Field } from 'formik';
+import Flatpickr from 'react-flatpickr';
+import 'flatpickr/dist/themes/material_orange.css';
 
 export const Backdrop = styled.div`
   position: fixed;
@@ -61,7 +63,7 @@ export const CloseSvg = styled(Close)`
 `;
 
 export const ModalTitle = styled.h2`
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   font-family: ${p => p.theme.fonts.textSecond};
   font-style: normal;
   font-weight: ${p => p.theme.fontWeights.normal};
@@ -83,7 +85,45 @@ export const ModalForm = styled(Form)`
 `;
 
 export const ModalInput = styled(Field)`
-  margin-bottom: 40px;
+  margin-bottom: 30px;
+`;
+
+export const ModalInputSelect = styled(ModalInput)`
+  width: 280px;
+  font-family: ${p => p.theme.fonts.text};
+  font-style: normal;
+  font-weight: ${p => p.theme.fontWeights.normal};
+  font-size: ${p => p.theme.fontSizes[3]};
+  line-height: ${p => p.theme.lineHeights.logo};
+  border: none;
+  padding: ${p => p.theme.space[3]}px;
+  background-color: white;
+  border-bottom: 1px solid ${p => p.theme.colors.textBalance};
+  @media screen and (min-width: 768px) {
+    width: 392px;
+  }
+`;
+
+export const InputWrapper = styled.div`
+  display: flex;
+`;
+
+export const ModalInputSum = styled(ModalInput)`
+  margin-right: 30px;
+  width: 182px;
+  font-family: ${p => p.theme.fonts.text};
+  font-style: normal;
+  font-weight: ${p => p.theme.fontWeights.bold};
+  font-size: ${p => p.theme.fontSizes[3]};
+  line-height: ${p => p.theme.lineHeights.logo};
+  border: none;
+  padding: ${p => p.theme.space[3]}px;
+  border-bottom: 1px solid ${p => p.theme.colors.textBalance};
+  text-align: center;
+  &:focus {
+    outline: none !important;
+  }
+
   &[type='number'] {
     -moz-appearance: textfield;
   }
@@ -94,8 +134,22 @@ export const ModalInput = styled(Field)`
   }
 `;
 
-export const InputWrapper = styled.div`
-  display: flex;
+export const ModalInputDate = styled(Flatpickr)`
+  height: 43.8px;
+  margin-bottom: 30px;
+  font-family: ${p => p.theme.fonts.text};
+  font-style: normal;
+  font-weight: ${p => p.theme.fontWeights.bold};
+  font-size: ${p => p.theme.fontSizes[3]};
+  line-height: ${p => p.theme.lineHeights.logo};
+  width: 182px;
+  border: none;
+  padding: ${p => p.theme.space[3]}px;
+  border-bottom: 1px solid ${p => p.theme.colors.textBalance};
+  text-align: center;
+  &:focus {
+    outline: none !important;
+  }
 `;
 
 export const SwitcherButtonVert = styled.div`

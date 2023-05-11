@@ -20,17 +20,18 @@ import {
 
 export const HomeTab = ({ transactionsList }) => {
   function formatDate(date) {
-    const dateObj = new Date(date);
-    let year = dateObj.getFullYear();
-    let month = dateObj.getMonth() + 1;
-    let day = dateObj.getDate();
-    if (day < 10) {
-      day = '0' + day;
-    }
-    if (month < 10) {
-      month = '0' + month;
-    }
-    return day + '.' + month + '.' + year.toString().substr(-2);
+    const dateToObj = new Date(date);
+    const formatedDate = dateToObj.toLocaleDateString();
+    // let year = dateObj.getFullYear();
+    // let month = dateObj.getMonth() + 1;
+    // let day = dateObj.getDate();
+    // if (day < 10) {
+    //   day = '0' + day;
+    // }
+    // if (month < 10) {
+    //   month = '0' + month;
+    // }
+    return formatedDate;
   }
   return (
     <HomeTabContainer>

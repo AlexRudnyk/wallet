@@ -13,6 +13,9 @@ import {
   SwitchWrapper,
   AddTransactionsBtn,
   CancelTransactionsBtn,
+  ModalInputSum,
+  ModalInputSelect,
+  ModalInputDate,
 } from './ModalAddTransactions.styled';
 import { createPortal } from 'react-dom';
 import { Formik, ErrorMessage } from 'formik';
@@ -42,6 +45,7 @@ export const ModalAddTransactions = ({ onClose, onSubmit }) => {
   };
 
   const handleSubmit = (values, { resetForm }) => {
+    console.log('VALUES', values);
     onSubmit(values);
     resetForm();
     onClose();
@@ -59,7 +63,7 @@ export const ModalAddTransactions = ({ onClose, onSubmit }) => {
             type: 'expense',
             category: '',
             sum: '',
-            date: new Date(),
+            date: new Date().toLocaleDateString(),
             comment: '',
           }}
           onSubmit={handleSubmit}
@@ -99,7 +103,7 @@ export const ModalAddTransactions = ({ onClose, onSubmit }) => {
                 />
               </SwitchWrapper>
               {type === 'income' ? (
-                <ModalInput component="select" name="category">
+                <ModalInputSelect component="select" name="category">
                   <option value="" hidden>
                     Choose a category
                   </option>
@@ -109,24 +113,36 @@ export const ModalAddTransactions = ({ onClose, onSubmit }) => {
                   <option value="education">Education</option>
                   <option value="sports">Sports</option>
                   <option value="car">Car</option>
-                  <option value="other">Other</option>
-                </ModalInput>
+                  <option value="other">Other...</option>
+                </ModalInputSelect>
               ) : (
-                <ModalInput component="select" name="category">
+                <ModalInputSelect component="select" name="category">
                   <option value="" hidden>
                     Choose a category
                   </option>
                   <option value="salary">Salary</option>
                   <option value="bonus">Bonus</option>
                   <option value="gift">Gift</option>
-                  <option value="other">Other</option>
-                </ModalInput>
+                  <option value="other">Other...</option>
+                </ModalInputSelect>
               )}
               <ErrorMessage name="category" />
               <InputWrapper>
-                <ModalInput type="number" name="sum" placeholder="0.00" />
+                <ModalInputSum type="number" name="sum" placeholder="0.00" />
                 <ErrorMessage name="sum" />
-                <ModalInput type="date" name="date" placeholder="Enter date" />
+                <ModalInputDate
+                  name="date"
+                  data-enable-time
+                  options={{
+                    maxDate: 'today',
+                    enableTime: false,
+                    dateFormat: 'd.m.Y',
+                    defaultDate: 'today',
+                  }}
+                  onChange={date => {
+                    setFieldValue('date', date);
+                  }}
+                />
                 <ErrorMessage name="date" />
               </InputWrapper>
               <ModalInput name="comment" placeholder="Comment" />
