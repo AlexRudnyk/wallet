@@ -45,7 +45,6 @@ export const ModalAddTransactions = ({ onClose, onSubmit }) => {
   };
 
   const handleSubmit = (values, { resetForm }) => {
-    console.log('VALUES', values);
     onSubmit(values);
     resetForm();
     onClose();
@@ -63,7 +62,7 @@ export const ModalAddTransactions = ({ onClose, onSubmit }) => {
             type: 'expense',
             category: '',
             sum: '',
-            date: new Date().toLocaleDateString(),
+            date: new Date(),
             comment: '',
           }}
           onSubmit={handleSubmit}
@@ -140,7 +139,7 @@ export const ModalAddTransactions = ({ onClose, onSubmit }) => {
                     defaultDate: 'today',
                   }}
                   onChange={date => {
-                    setFieldValue('date', date);
+                    setFieldValue('date', date[0]);
                   }}
                 />
                 <ErrorMessage name="date" />
