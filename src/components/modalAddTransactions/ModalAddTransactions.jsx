@@ -5,7 +5,6 @@ import {
   CloseSvg,
   ButtonClose,
   ModalForm,
-  ModalInput,
   InputWrapper,
   ModalTitle,
   SwitcherButtonVert,
@@ -16,6 +15,7 @@ import {
   ModalInputSum,
   ModalInputSelect,
   ModalInputDate,
+  ModalInputComment,
 } from './ModalAddTransactions.styled';
 import { createPortal } from 'react-dom';
 import { Formik, ErrorMessage } from 'formik';
@@ -144,7 +144,7 @@ export const ModalAddTransactions = ({ onClose, onSubmit }) => {
                 />
                 <ErrorMessage name="date" />
               </InputWrapper>
-              <ModalInput name="comment" placeholder="Comment" />
+              <ModalInputComment name="comment" placeholder="Comment" />
               <ErrorMessage name="comment" />
               <AddTransactionsBtn type="submit">Add</AddTransactionsBtn>
               <CancelTransactionsBtn type="button" onClick={() => onClose()}>

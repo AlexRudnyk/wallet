@@ -34,7 +34,7 @@ export const ModalWindow = styled.div`
   max-height: 95%;
 
   width: 540px;
-  height: 570px;
+  height: 572px;
   background-color: ${p => p.theme.colors.white};
   border-radius: ${p => p.theme.radii.small};
 
@@ -149,6 +149,27 @@ export const ModalInputDate = styled(Flatpickr)`
   text-align: center;
   &:focus {
     outline: none !important;
+  }
+`;
+
+export const ModalInputComment = styled(ModalInput)`
+  width: 280px;
+  height: 84px;
+  font-family: ${p => p.theme.fonts.text};
+  font-style: normal;
+  font-weight: ${p => p.theme.fontWeights.normal};
+  font-size: ${p => p.theme.fontSizes[3]};
+  line-height: ${p => p.theme.lineHeights.logo};
+  border: none;
+  padding: ${p => p.theme.space[3]}px;
+  border-bottom: 1px solid ${p => p.theme.colors.textBalance};
+  &:focus {
+    outline: none !important;
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 392px;
+    height: 40px;
   }
 `;
 
