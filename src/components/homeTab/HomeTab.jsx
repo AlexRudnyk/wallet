@@ -1,3 +1,5 @@
+import { useDispatch } from 'react-redux';
+import { deleteTransaction } from 'redux/transactions/operations';
 import {
   TitlesTable,
   TitleTableText,
@@ -16,23 +18,32 @@ import {
   TableItemSumContainer,
   TableItemBalanceContainer,
   HomeTabContainer,
+  DelBtn,
+  TrashIcon,
 } from './HomeTab.styled';
+import axios from 'axios';
+import { setBalance } from 'redux/auth/slice';
 
 export const HomeTab = ({ transactionsList }) => {
+  const dispatch = useDispatch();
+
   function formatDate(date) {
     const dateToObj = new Date(date);
     const formatedDate = dateToObj.toLocaleDateString();
-    // let year = dateObj.getFullYear();
-    // let month = dateObj.getMonth() + 1;
-    // let day = dateObj.getDate();
-    // if (day < 10) {
-    //   day = '0' + day;
-    // }
-    // if (month < 10) {
-    //   month = '0' + month;
-    // }
     return formatedDate;
   }
+
+  const updateBalance = async () => {
+    try {
+      const { data } = await axios.get(
+        'http://localhost:3030/api/users/balance'
+      );
+      dispatch(setBalance(data));
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   return (
     <HomeTabContainer>
       <TitlesTable>
@@ -75,6 +86,16 @@ export const HomeTab = ({ transactionsList }) => {
               <TableItemBalanceContainer>
                 {transaction.balance}
               </TableItemBalanceContainer>
+              <DelBtn
+                type="button"
+                onClick={() => {
+                  dispatch(deleteTransaction(transaction._id)).then(() =>
+                    updateBalance()
+                  );
+                }}
+              >
+                <TrashIcon />
+              </DelBtn>
             </TransactionsTableItem>
           );
         })}

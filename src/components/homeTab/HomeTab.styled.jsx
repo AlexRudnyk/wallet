@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { BsFillTrashFill } from 'react-icons/bs';
 
 export const HomeTabContainer = styled.div`
   height: 312px;
@@ -15,7 +16,7 @@ export const HomeTabContainer = styled.div`
 export const TitlesTable = styled.ul`
   @media screen and (min-width: 768px) {
     display: flex;
-    padding: 16px 20px 15px;
+    padding: 16px 35px 15px 20px;
     background-color: ${p => p.theme.colors.white};
     border-radius: 30px;
   }
@@ -106,5 +107,19 @@ export const TransactionsTable = styled.ul`
 
   @media screen and (min-width: 1280px) {
     width: 715px;
+  }
+`;
+
+export const DelBtn = styled.button`
+  margin-left: 5px;
+  border: none;
+  background-color: transparent;
+`;
+
+export const TrashIcon = styled(BsFillTrashFill)`
+  cursor: pointer;
+  color: #bdbdbd;
+  &:hover {
+    fill: #ff6596;
   }
 `;
