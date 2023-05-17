@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { ReactComponent as Close } from '../../images/Сlose.svg';
 import { Form, Field } from 'formik';
 import Flatpickr from 'react-flatpickr';
-import 'flatpickr/dist/themes/material_orange.css';
+import 'flatpickr/dist/themes/light.css';
 
 export const Backdrop = styled.div`
   position: fixed;
