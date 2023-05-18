@@ -17,7 +17,6 @@ import { Balance } from 'components/balance';
 import { Currency } from 'components/currency';
 import { HomeTab } from 'components/homeTab';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 import { ModalAddTransactions } from 'components/modalAddTransactions';
 import { useDispatch } from 'react-redux';
 import { addTransaction, getTransactions } from 'redux/transactions/operations';
@@ -27,7 +26,8 @@ import { selectTransactions } from 'redux/transactions/selectors';
 import { selectUser } from 'redux/auth/selectors';
 
 export const Dashboard = () => {
-  const transactions = useSelector(selectTransactions);
+  const stateTransactions = useSelector(selectTransactions);
+  const [transactions, setTransactions] = useState([]);
   const { balance } = useSelector(selectUser);
   const [isModalAddTransactionOpen, setIsModalAddTransactionOpen] =
     useState(false);
@@ -37,6 +37,37 @@ export const Dashboard = () => {
   useEffect(() => {
     dispatch(getTransactions());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (stateTransactions !== undefined && stateTransactions.length > 0) {
+      const sortedTransactions = [...stateTransactions].sort((item1, item2) => {
+        const date1 = new Date(item1.date);
+        const date2 = new Date(item2.date);
+        return Number(date2) - Number(date1);
+      });
+      const arr = [];
+      sortedTransactions.reverse().reduce((previousValue, item) => {
+        const newItem = {
+          ...item,
+          balance:
+            item.type === 'expense'
+              ? previousValue - item.sum
+              : previousValue + item.sum,
+        };
+        arr.push(newItem);
+        return item.type === 'expense'
+          ? previousValue - item.sum
+          : previousValue + item.sum;
+      }, 0);
+      if (stateTransactions && arr.length === stateTransactions.length) {
+        dispatch(setBalance(arr[arr.length - 1].balance));
+        setTransactions(arr.reverse());
+      }
+    } else {
+      setTransactions([]);
+      dispatch(setBalance(0));
+    }
+  }, [dispatch, stateTransactions]);
 
   const handleOnAddTransctionButtonClick = e => {
     e.preventDefault();
@@ -49,20 +80,7 @@ export const Dashboard = () => {
 
   const handleSubmit = values => {
     dispatch(addTransaction(values));
-    async function getBalance() {
-      try {
-        const { data } = await axios.get(
-          'http://localhost:3030/api/users/balance'
-        );
-        dispatch(setBalance(data));
-      } catch (error) {
-        console.log(error.message);
-      }
-    }
-    getBalance();
   };
-
-  const sortedTransactions = [...transactions].reverse();
 
   return (
     <>
@@ -99,7 +117,7 @@ export const Dashboard = () => {
               {/* {pathname === '/diagram' && <DiagramTab />} */}
               {pathname === '/dashboard' && (
                 <>
-                  <HomeTab transactionsList={sortedTransactions} />
+                  <HomeTab transactionsList={transactions} />
                   <ButtonAddTransactions
                     type="button"
                     onClick={handleOnAddTransctionButtonClick}
