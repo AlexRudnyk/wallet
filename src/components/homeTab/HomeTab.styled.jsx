@@ -36,6 +36,8 @@ export const TitleTableText = styled.p`
 export const TransactionsTableItem = styled.li`
   display: flex;
   align-items: center;
+  position: relative;
+  border-bottom: 1px solid ${p => p.theme.colors.inputBorder};
   /* &:not(:last-child) {
     margin-bottom: 10px;
   } */

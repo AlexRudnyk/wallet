@@ -30,12 +30,14 @@ const transactionsSlice = createSlice({
       .addCase(getTransactions.pending, handlePending)
       .addCase(getTransactions.fulfilled, (state, action) => {
         state.transactions = action.payload;
+        state.isRefreshing = false;
         state.error = false;
       })
       .addCase(getTransactions.rejected, handleRejected)
       .addCase(addTransaction.pending, handlePending)
       .addCase(addTransaction.fulfilled, (state, action) => {
         state.transactions = [...state.transactions, action.payload];
+        state.isRefreshing = false;
         state.error = false;
       })
       .addCase(addTransaction.rejected, handleRejected)
@@ -45,7 +47,8 @@ const transactionsSlice = createSlice({
           item => action.payload._id !== item._id
         );
         state.transactions = res;
-      });
+      })
+      .addCase(deleteTransaction.rejected, handleRejected);
   },
 });
 

@@ -24,6 +24,7 @@ import { setBalance } from 'redux/auth/slice';
 import { useSelector } from 'react-redux';
 import { selectTransactions } from 'redux/transactions/selectors';
 import { selectUser } from 'redux/auth/selectors';
+import { DiagramTab } from 'components/diagramTab';
 
 export const Dashboard = () => {
   const stateTransactions = useSelector(selectTransactions);
@@ -114,7 +115,7 @@ export const Dashboard = () => {
             </DashboardFirstWrapper>
             <DashboardSeparator pathname={pathname} />
             <DashboardSecondWrapper>
-              {/* {pathname === '/diagram' && <DiagramTab />} */}
+              {pathname === '/diagram' && <DiagramTab />}
               {pathname === '/dashboard' && (
                 <>
                   <HomeTab transactionsList={transactions} />
