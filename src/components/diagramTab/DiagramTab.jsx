@@ -20,8 +20,10 @@ export const DiagramTab = () => {
   const [tableCategories, setTableCategories] = useState([]);
   const [tableIncomeSum, setTableIncomeSum] = useState(0);
   const [tableExpenseSum, setTableExpenseSum] = useState(0);
-  const [month, setMonth] = useState('');
-  const [year, setYear] = useState('');
+  const [month, setMonth] = useState(new Date(Date.now()).getMonth() + 1);
+  const [year, setYear] = useState(new Date(Date.now()).getFullYear());
+  // const [month, setMonth] = useState('');
+  // const [year, setYear] = useState('');
 
   useEffect(() => {
     dispatch(getCategories());
@@ -65,7 +67,6 @@ export const DiagramTab = () => {
     function onDateFilter({ month, year }, data) {
       if (month === '' && year === '') {
         const result = data;
-        console.log('RESULT', result);
         return result;
       }
 
@@ -85,7 +86,6 @@ export const DiagramTab = () => {
             item._id.month === Number(month) && item._id.year === Number(year)
         );
 
-        console.log('RESULT', result);
         return result;
       }
 
@@ -141,9 +141,6 @@ export const DiagramTab = () => {
   const handleYearChange = event => {
     setYear(event.currentTarget.value);
   };
-
-  console.log('MONTH', month);
-  console.log('YEAR', year);
 
   return (
     <StatisticsContainer>
