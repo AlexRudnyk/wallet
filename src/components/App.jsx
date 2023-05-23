@@ -9,7 +9,6 @@ import { GlobalStyle } from '../globalStyles/globalStyle';
 import FontStyles from '../globalStyles/fontStyles';
 import { PrivateRoute, RestrictedRoute } from './routes';
 import { Dashboard } from 'pages/Dashboard';
-import { DiagramTab } from './diagramTab';
 
 // const LazyPrivateRoute = lazy(() => import('./routes/PrivateRoute'));
 // const LazyRestrictedRoute = lazy(() => import('./routes/RestrictedRoute'));
@@ -51,9 +50,7 @@ export const App = () => {
           />
           <Route
             path="/diagram"
-            element={
-              <PrivateRoute component={DiagramTab} redirectTo="/login" />
-            }
+            element={<PrivateRoute component={Dashboard} redirectTo="/login" />}
           />
 
           <Route path="*" element={<Navigate to="/login" />} />

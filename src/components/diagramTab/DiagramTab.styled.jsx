@@ -27,7 +27,6 @@ export const DiagramTableBar = styled.div`
   }
   @media screen and (min-width: 768px) {
     width: 336px;
-    //margin-top: 11px;
   }
   @media screen and (min-width: 1280px) {
     width: 395px;
@@ -38,7 +37,7 @@ export const DiagramTableBar = styled.div`
 export const DiagramButtonsWrapper = styled.div``;
 
 export const Select = styled.select`
-  width: 181px;
+  width: 280px;
   height: 50px;
   padding: 12px 20px;
   background-color: transparent;
@@ -48,10 +47,26 @@ export const Select = styled.select`
   font-style: normal;
   font-weight: ${p => p.theme.fontWeights.normal};
   font-size: ${p => p.theme.fontSizes[2]};
+
+  @media screen and (min-width: 768px) {
+    width: 160px;
+  }
+  @media screen and (min-width: 1280px) {
+    width: 182px;
+  }
 `;
 
 export const Form = styled.form`
   display: flex;
   justify-content: space-between;
-  width: 395px;
+  width: 280px;
+  margin-bottom: 20px;
+
+  @media screen and (min-width: 768px) {
+    width: 336px;
+    margin-top: 20px;
+  }
+  @media screen and (min-width: 1280px) {
+    width: 395px;
+  }
 `;

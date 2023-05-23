@@ -8,6 +8,7 @@ export const Container = styled.div`
   margin-top: 43px;
   @media screen and (min-width: 768px) {
     margin-top: 0px;
+    margin-bottom: 0;
   }
 `;
 

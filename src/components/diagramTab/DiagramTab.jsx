@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import { selectCategories } from 'redux/categories/selectors';
 import { colorCategory } from 'helpers/colorCategory';
 import { Chart } from 'components/chart';
+import { ExpensesList } from 'components/expensesList';
 import {
   StatisticsContainer,
   DiagramTabWrapper,
@@ -20,10 +21,10 @@ export const DiagramTab = () => {
   const [tableCategories, setTableCategories] = useState([]);
   const [tableIncomeSum, setTableIncomeSum] = useState(0);
   const [tableExpenseSum, setTableExpenseSum] = useState(0);
-  const [month, setMonth] = useState(new Date(Date.now()).getMonth() + 1);
-  const [year, setYear] = useState(new Date(Date.now()).getFullYear());
-  // const [month, setMonth] = useState('');
-  // const [year, setYear] = useState('');
+  // const [month, setMonth] = useState(new Date(Date.now()).getMonth() + 1);
+  // const [year, setYear] = useState(new Date(Date.now()).getFullYear());
+  const [month, setMonth] = useState('');
+  const [year, setYear] = useState('');
 
   useEffect(() => {
     dispatch(getCategories());
@@ -178,22 +179,11 @@ export const DiagramTab = () => {
               <option value="2023">2023</option>
             </Select>
           </Form>
-          {/* <DiagramButtonsWrapper className="diagram-tab__buttons-wrapper">
-            <CustomSelect
-              items={yearDataSet}
-              changeValue={setYearSelectedValue}
-            />
-            <CustomSelect
-              items={monthDataSet}
-              changeValue={setMonthSelectedValue}
-            />
-          </DiagramButtonsWrapper> */}
-
-          {/* <Table
+          <ExpensesList
             tableCategories={tableCategories}
-            tableIncomeSum={tableIncomeSum}
             tableExpenseSum={tableExpenseSum}
-          /> */}
+            tableIncomeSum={tableIncomeSum}
+          />
         </DiagramTableBar>
       </DiagramTabWrapper>
     </StatisticsContainer>

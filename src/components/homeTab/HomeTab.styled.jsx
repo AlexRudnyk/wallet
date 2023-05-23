@@ -1,17 +1,7 @@
 import styled from 'styled-components';
 import { BsFillTrashFill } from 'react-icons/bs';
 
-export const HomeTabContainer = styled.div`
-  height: 312px;
-  overflow-y: hidden;
-  overflow-y: scroll;
-
-  @media screen and (min-width: 1280px) {
-    height: 480px;
-    overflow-y: hidden;
-    overflow-y: scroll;
-  }
-`;
+export const HomeTabContainer = styled.div``;
 
 export const TitlesTable = styled.ul`
   @media screen and (min-width: 768px) {
@@ -70,11 +60,6 @@ export const TableItemBalanceContainer = styled.div`
   text-align: end;
 `;
 
-// export const TitlesTableItem = styled.li`
-//   width: calc(100% / 6);
-//   text-align: center;
-// `;
-
 export const DateTableItem = styled.li`
   flex: 2;
 `;
@@ -105,6 +90,9 @@ export const TransactionsTable = styled.ul`
   @media screen and (min-width: 768px) {
     padding: 16px 20px 15px;
     justify-content: space-between;
+    height: 312px;
+    overflow-y: hidden;
+    overflow-y: scroll;
   }
 
   @media screen and (min-width: 1280px) {

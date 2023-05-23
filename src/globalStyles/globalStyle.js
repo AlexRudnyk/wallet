@@ -15,7 +15,6 @@ export const GlobalStyle = createGlobalStyle`
 
  body {
     margin: 0;
-
     font-family: 'Circe', sans-serif;
     font-size: ${p => p.theme.fontSizes[2]};
     line-height: ${p => p.theme.lineHeights.text};
@@ -24,7 +23,7 @@ export const GlobalStyle = createGlobalStyle`
     background-color: ${p => p.theme.colors.background};
 
       @media screen and (min-width: 768px) {
-    background: url(${bgTabImg});
+    background-image: url(${bgTabImg});
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

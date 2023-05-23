@@ -10,6 +10,7 @@ import {
   ButtonAddTransactions,
   SwitchElVert,
   SwitchElGor,
+  CurrencyWrapper,
 } from './Dashboard.styled';
 import Media from 'react-media';
 import { Navigation } from 'components/navigation';
@@ -106,9 +107,9 @@ export const Dashboard = () => {
               <Media queries={{ table: { minWidth: 768 } }}>
                 {matches =>
                   matches.table && (
-                    <div>
+                    <CurrencyWrapper>
                       <Currency />
-                    </div>
+                    </CurrencyWrapper>
                   )
                 }
               </Media>
