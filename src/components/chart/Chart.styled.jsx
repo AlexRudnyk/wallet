@@ -42,6 +42,11 @@ export const ChartContainer = styled.div`
   }
 `;
 
+export const NotFoundImg = styled.img`
+  display: block;
+  width: 100%;
+`;
+
 export const Text = styled.p`
   position: absolute;
   display: block;

@@ -1,0 +1,1 @@
+export { TabletAndDeskMarkup } from './TabletAndDeskMarkup';

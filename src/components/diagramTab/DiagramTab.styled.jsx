@@ -36,6 +36,13 @@ export const DiagramTableBar = styled.div`
 
 export const DiagramButtonsWrapper = styled.div``;
 
+export const SelectWrapper = styled.div`
+  @media screen and (min-width: 768px) {
+    display: flex;
+    justify-content: space-between;
+  }
+`;
+
 export const Select = styled.select`
   width: 280px;
   height: 50px;
@@ -48,6 +55,11 @@ export const Select = styled.select`
   font-weight: ${p => p.theme.fontWeights.normal};
   font-size: ${p => p.theme.fontSizes[2]};
 
+  @media screen and (max-width: 767.98px) {
+    &:not(:last-child) {
+      margin-bottom: 20px;
+    }
+  }
   @media screen and (min-width: 768px) {
     width: 160px;
   }
@@ -57,8 +69,6 @@ export const Select = styled.select`
 `;
 
 export const Form = styled.form`
-  display: flex;
-  justify-content: space-between;
   width: 280px;
   margin-bottom: 20px;
 

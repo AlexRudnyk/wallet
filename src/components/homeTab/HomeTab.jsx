@@ -1,28 +1,10 @@
 import { useDispatch } from 'react-redux';
-import { deleteTransaction } from 'redux/transactions/operations';
-import {
-  TitlesTable,
-  TitleTableText,
-  TransactionsTableItem,
-  TransactionsTable,
-  DateTableItem,
-  TypeTableItem,
-  CategoryTableItem,
-  CommentTableItem,
-  SumTableItem,
-  BalanceTableItem,
-  TableItemDataContainer,
-  TableItemTypeContainer,
-  TableItemCategoryContainer,
-  TableItemCommentContainer,
-  TableItemSumContainer,
-  TableItemBalanceContainer,
-  HomeTabContainer,
-  DelBtn,
-  TrashIcon,
-} from './HomeTab.styled';
 import axios from 'axios';
 import { setBalance } from 'redux/auth/slice';
+import { TabletAndDeskMarkup } from './tabletAndDeskMarkup';
+import Media from 'react-media';
+import { Text } from './HomeTab.styled';
+import { MobileMarkup } from './mobileMarkup';
 
 export const HomeTab = ({ transactionsList }) => {
   const dispatch = useDispatch();
@@ -45,61 +27,28 @@ export const HomeTab = ({ transactionsList }) => {
   };
 
   return (
-    <HomeTabContainer>
-      <TitlesTable>
-        <DateTableItem>
-          <TitleTableText>Date</TitleTableText>
-        </DateTableItem>
-        <TypeTableItem>
-          <TitleTableText>Type</TitleTableText>
-        </TypeTableItem>
-        <CategoryTableItem>
-          <TitleTableText>Category</TitleTableText>
-        </CategoryTableItem>
-        <CommentTableItem>
-          <TitleTableText>Comment</TitleTableText>
-        </CommentTableItem>
-        <SumTableItem>
-          <TitleTableText>Sum</TitleTableText>
-        </SumTableItem>
-        <BalanceTableItem>
-          <TitleTableText>Balance</TitleTableText>
-        </BalanceTableItem>
-      </TitlesTable>
-      <TransactionsTable>
-        {transactionsList?.map(transaction => {
-          return (
-            <TransactionsTableItem key={transaction._id}>
-              <TableItemDataContainer>
-                {formatDate(transaction.date)}
-              </TableItemDataContainer>
-              <TableItemTypeContainer>
-                {transaction.type === 'income' ? '+' : '–'}
-              </TableItemTypeContainer>
-              <TableItemCategoryContainer>
-                {transaction.category}
-              </TableItemCategoryContainer>
-              <TableItemCommentContainer>
-                {transaction.comment}
-              </TableItemCommentContainer>
-              <TableItemSumContainer>{transaction.sum}</TableItemSumContainer>
-              <TableItemBalanceContainer>
-                {transaction.balance}
-              </TableItemBalanceContainer>
-              <DelBtn
-                type="button"
-                onClick={() => {
-                  dispatch(deleteTransaction(transaction._id)).then(() =>
-                    updateBalance()
-                  );
-                }}
-              >
-                <TrashIcon />
-              </DelBtn>
-            </TransactionsTableItem>
-          );
-        })}
-      </TransactionsTable>
-    </HomeTabContainer>
+    <Media queries={{ mobile: { maxWidth: 767.98 } }}>
+      {matches =>
+        matches.mobile ? (
+          transactionsList.length === 0 ? (
+            <Text>There are no transactions yet</Text>
+          ) : (
+            <MobileMarkup
+              transactionsList={transactionsList}
+              formatDate={formatDate}
+              updateBalance={updateBalance}
+            />
+          )
+        ) : transactionsList.length === 0 ? (
+          <Text>There are no transactions yet</Text>
+        ) : (
+          <TabletAndDeskMarkup
+            transactionsList={transactionsList}
+            formatDate={formatDate}
+            updateBalance={updateBalance}
+          />
+        )
+      }
+    </Media>
   );
 };

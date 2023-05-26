@@ -94,7 +94,7 @@ export const Dashboard = () => {
               <div>
                 <Navigation />
                 <Balance balance={balance} />
-                <Media queries={{ mobile: { maxWidth: 767 } }}>
+                <Media queries={{ mobile: { maxWidth: 767.98 } }}>
                   {matches =>
                     matches.mobile && (
                       <div>

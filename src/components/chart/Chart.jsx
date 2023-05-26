@@ -2,7 +2,13 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { useEffect, useState } from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import { Loader } from 'components/loader';
-import { Container, Label, ChartContainer, Text } from './Chart.styled';
+import {
+  Container,
+  Label,
+  ChartContainer,
+  Text,
+  NotFoundImg,
+} from './Chart.styled';
 import noDataFound from '../../images/noDataFound.jpg';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
@@ -81,7 +87,7 @@ export const Chart = ({ tableCategories = [], tableExpenseSum = 0 }) => {
       <ChartContainer>
         {!tableCategories && <Loader color="#4a56e2" size="100px" />}
         {categorySum?.length === 0 && (
-          <img src={noDataFound} alt="Oops, something is wrong" />
+          <NotFoundImg src={noDataFound} alt="Oops, something is wrong" />
         )}
         {tableCategories && categorySum?.length !== 0 && (
           <>
