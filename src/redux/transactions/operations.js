@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-axios.defaults.baseURL = 'http://localhost:3030';
+axios.defaults.baseURL = 'https://wallet-backend-h68t.vercel.app/';
 
 export const getTransactions = createAsyncThunk(
   'transactions/getTransactions',

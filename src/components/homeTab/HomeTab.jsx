@@ -18,7 +18,7 @@ export const HomeTab = ({ transactionsList }) => {
   const updateBalance = async () => {
     try {
       const { data } = await axios.get(
-        'http://localhost:3030/api/users/balance'
+        'https://wallet-backend-h68t.vercel.app/api/users/balance'
       );
       dispatch(setBalance(data));
     } catch (error) {

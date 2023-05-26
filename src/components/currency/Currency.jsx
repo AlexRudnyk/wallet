@@ -24,7 +24,9 @@ export const Currency = () => {
     setStatus('pending');
     async function FetchCurrency() {
       try {
-        const { data } = await axios('http://localhost:3030/api/currency');
+        const { data } = await axios(
+          'https://wallet-backend-h68t.vercel.app/api/currency'
+        );
 
         const result = data.exchangeRate.filter(
           item =>
