@@ -50,7 +50,8 @@ export const Link = styled(NavLink)`
     fill: ${p => p.theme.colors.notActiveLink};
   }
   &.active {
-    font-family: ${p => p.theme.fonts.logo};
+    font-family: ${p => p.theme.fonts.textBold};
+    font-weight: ${p => p.theme.fontWeights.bold};
     & > svg {
       fill: ${p => p.theme.colors.activeLink};
     }
