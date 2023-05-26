@@ -199,7 +199,6 @@ export const SwitchWrapper = styled.div`
   height: 40px;
   border: 1px solid ${p => p.theme.colors.inputBorder};
   border-radius: 30px;
-  margin-bottom: 40px;
 `;
 
 export const Button = styled.button`
@@ -237,4 +236,22 @@ export const CancelTransactionsBtn = styled(Button)`
   border: 1px solid ${p => p.theme.colors.activeBlue};
   border-radius: ${p => p.theme.radii.small};
   color: ${p => p.theme.colors.activeBlue};
+`;
+
+export const IncomeText = styled.p`
+  cursor: pointer;
+  margin-right: 20px;
+  padding-top: 10px;
+  color: ${props => (props.nonActive ? '#E0E0E0' : '#24CCA7')};
+`;
+export const ExpenseText = styled.p`
+  cursor: pointer;
+  margin-left: 20px;
+  padding-top: 10px;
+  color: ${props => (props.nonActive ? '#E0E0E0' : '#FF6596')};
+`;
+
+export const LabelBtnWrapper = styled.div`
+  display: flex;
+  margin-bottom: 40px;
 `;

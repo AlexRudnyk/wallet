@@ -16,6 +16,9 @@ import {
   ModalInputSelect,
   ModalInputDate,
   ModalInputComment,
+  IncomeText,
+  ExpenseText,
+  LabelBtnWrapper,
 } from './ModalAddTransactions.styled';
 import { createPortal } from 'react-dom';
 import { Formik, ErrorMessage } from 'formik';
@@ -69,38 +72,60 @@ export const ModalAddTransactions = ({ onClose, onSubmit }) => {
         >
           {({ values, setFieldValue }) => (
             <ModalForm>
-              <SwitchWrapper>
-                <Switch
-                  name="type"
-                  onChange={nextChecked => {
-                    setChecked(nextChecked);
-                    setFieldValue('type', type);
+              <LabelBtnWrapper>
+                <IncomeText
+                  nonActive={checked}
+                  onClick={e => {
+                    if (e.currentTarget === e.target) {
+                      setChecked(!checked);
+                    }
                   }}
-                  checked={checked}
-                  className="react-switch"
-                  height={30}
-                  width={78}
-                  handleDiameter={44}
-                  offColor="#FFFFFF"
-                  onColor="#FFFFFF"
-                  offHandleColor="#24CCA7"
-                  onHandleColor="#FF6596"
-                  boxShadow={
-                    checked
-                      ? '0px 6px 15px rgba(255, 101, 150, 0.5)'
-                      : '0px 6px 15px rgba(36, 204, 167, 0.5)'
-                  }
-                  uncheckedIcon={false}
-                  checkedIcon={false}
-                  uncheckedHandleIcon={
-                    <>
-                      <SwitcherButtonVert />
-                      <SwitcherButtonGor />
-                    </>
-                  }
-                  checkedHandleIcon={<SwitcherButtonGor />}
-                />
-              </SwitchWrapper>
+                >
+                  Income
+                </IncomeText>
+                <SwitchWrapper>
+                  <Switch
+                    name="type"
+                    onChange={nextChecked => {
+                      setChecked(nextChecked);
+                      setFieldValue('type', type);
+                    }}
+                    checked={checked}
+                    className="react-switch"
+                    height={30}
+                    width={78}
+                    handleDiameter={44}
+                    offColor="#FFFFFF"
+                    onColor="#FFFFFF"
+                    offHandleColor="#24CCA7"
+                    onHandleColor="#FF6596"
+                    boxShadow={
+                      checked
+                        ? '0px 6px 15px rgba(255, 101, 150, 0.5)'
+                        : '0px 6px 15px rgba(36, 204, 167, 0.5)'
+                    }
+                    uncheckedIcon={false}
+                    checkedIcon={false}
+                    uncheckedHandleIcon={
+                      <>
+                        <SwitcherButtonVert />
+                        <SwitcherButtonGor />
+                      </>
+                    }
+                    checkedHandleIcon={<SwitcherButtonGor />}
+                  />
+                </SwitchWrapper>
+                <ExpenseText
+                  nonActive={!checked}
+                  onClick={e => {
+                    if (e.currentTarget === e.target) {
+                      setChecked(!checked);
+                    }
+                  }}
+                >
+                  Expense
+                </ExpenseText>
+              </LabelBtnWrapper>
               {type === 'income' ? (
                 <ModalInputSelect component="select" name="category">
                   <option value="" hidden>
