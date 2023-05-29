@@ -56,9 +56,13 @@ export const DelBtnWrapper = styled.div`
 `;
 
 export const DelBtn = styled.button`
-  margin-left: 5px;
   border: none;
   background-color: transparent;
+  padding: 0 30px;
+
+  @media screen and (min-width: 768) {
+    margin-left: 5px;
+  }
 `;
 
 export const TrashIcon = styled(BsFillTrashFill)`
