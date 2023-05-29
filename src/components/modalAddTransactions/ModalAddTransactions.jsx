@@ -19,6 +19,7 @@ import {
   IncomeText,
   ExpenseText,
   LabelBtnWrapper,
+  SelectOption,
 } from './ModalAddTransactions.styled';
 import { createPortal } from 'react-dom';
 import { Formik, ErrorMessage } from 'formik';
@@ -128,26 +129,26 @@ export const ModalAddTransactions = ({ onClose, onSubmit }) => {
               </LabelBtnWrapper>
               {type === 'income' ? (
                 <ModalInputSelect component="select" name="category">
-                  <option value="" hidden>
+                  <SelectOption value="" hidden>
                     Choose a category
-                  </option>
-                  <option value="house">House</option>
-                  <option value="food">Food</option>
-                  <option value="children">Children</option>
-                  <option value="education">Education</option>
-                  <option value="sports">Sports</option>
-                  <option value="car">Car</option>
-                  <option value="other">Other...</option>
+                  </SelectOption>
+                  <SelectOption value="house">House</SelectOption>
+                  <SelectOption value="food">Food</SelectOption>
+                  <SelectOption value="children">Children</SelectOption>
+                  <SelectOption value="education">Education</SelectOption>
+                  <SelectOption value="sports">Sports</SelectOption>
+                  <SelectOption value="car">Car</SelectOption>
+                  <SelectOption value="other">Other...</SelectOption>
                 </ModalInputSelect>
               ) : (
                 <ModalInputSelect component="select" name="category">
-                  <option value="" hidden>
+                  <SelectOption value="" hidden>
                     Choose a category
-                  </option>
-                  <option value="salary">Salary</option>
-                  <option value="bonus">Bonus</option>
-                  <option value="gift">Gift</option>
-                  <option value="other">Other...</option>
+                  </SelectOption>
+                  <SelectOption value="salary">Salary</SelectOption>
+                  <SelectOption value="bonus">Bonus</SelectOption>
+                  <SelectOption value="gift">Gift</SelectOption>
+                  <SelectOption value="other">Other...</SelectOption>
                 </ModalInputSelect>
               )}
               <ErrorMessage name="category" />
