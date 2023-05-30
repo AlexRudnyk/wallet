@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux';
 import { getCategories } from 'redux/categories/operations';
 import { useSelector } from 'react-redux';
 import { selectCategories } from 'redux/categories/selectors';
-import { selectIsRefreshing } from 'redux/categories/selectors';
 import { colorCategory } from 'helpers/colorCategory';
 import { Chart } from 'components/chart';
 import { ExpensesList } from 'components/expensesList';
@@ -19,7 +18,6 @@ import {
 export const DiagramTab = () => {
   const dispatch = useDispatch();
   const categories = useSelector(selectCategories);
-  const isRefreshing = useSelector(selectIsRefreshing);
 
   const [tableCategories, setTableCategories] = useState([]);
   const [tableIncomeSum, setTableIncomeSum] = useState(0);
@@ -145,58 +143,50 @@ export const DiagramTab = () => {
   };
 
   return (
-    !isRefreshing && (
-      <>
-        <StatisticsContainer>
-          <Chart
+    <StatisticsContainer>
+      <Chart
+        tableCategories={tableCategories}
+        tableExpenseSum={tableExpenseSum}
+      />
+      <DiagramTabWrapper>
+        <DiagramTableBar>
+          <Form>
+            <SelectWrapper>
+              <Select name="month" value={month} onChange={handleMonthChange}>
+                <option value="" hidden>
+                  Month
+                </option>
+                <option value="1">January</option>
+                <option value="2">February</option>
+                <option value="3">March</option>
+                <option value="4">April</option>
+                <option value="5">May</option>
+                <option value="6">June</option>
+                <option value="7">July</option>
+                <option value="8">August</option>
+                <option value="9">September</option>
+                <option value="10">October</option>
+                <option value="11">November</option>
+                <option value="12">December</option>
+              </Select>
+              <Select name="year" value={year} onChange={handleYearChange}>
+                <option value="" hidden>
+                  Year
+                </option>
+                <option value="2020">2020</option>
+                <option value="2021">2021</option>
+                <option value="2022">2022</option>
+                <option value="2023">2023</option>
+              </Select>
+            </SelectWrapper>
+          </Form>
+          <ExpensesList
             tableCategories={tableCategories}
             tableExpenseSum={tableExpenseSum}
+            tableIncomeSum={tableIncomeSum}
           />
-          <DiagramTabWrapper>
-            <DiagramTableBar>
-              <Form>
-                <SelectWrapper>
-                  <Select
-                    name="month"
-                    value={month}
-                    onChange={handleMonthChange}
-                  >
-                    <option value="" hidden>
-                      Month
-                    </option>
-                    <option value="1">January</option>
-                    <option value="2">February</option>
-                    <option value="3">March</option>
-                    <option value="4">April</option>
-                    <option value="5">May</option>
-                    <option value="6">June</option>
-                    <option value="7">July</option>
-                    <option value="8">August</option>
-                    <option value="9">September</option>
-                    <option value="10">October</option>
-                    <option value="11">November</option>
-                    <option value="12">December</option>
-                  </Select>
-                  <Select name="year" value={year} onChange={handleYearChange}>
-                    <option value="" hidden>
-                      Year
-                    </option>
-                    <option value="2020">2020</option>
-                    <option value="2021">2021</option>
-                    <option value="2022">2022</option>
-                    <option value="2023">2023</option>
-                  </Select>
-                </SelectWrapper>
-              </Form>
-              <ExpensesList
-                tableCategories={tableCategories}
-                tableExpenseSum={tableExpenseSum}
-                tableIncomeSum={tableIncomeSum}
-              />
-            </DiagramTableBar>
-          </DiagramTabWrapper>
-        </StatisticsContainer>
-      </>
-    )
+        </DiagramTableBar>
+      </DiagramTabWrapper>
+    </StatisticsContainer>
   );
 };

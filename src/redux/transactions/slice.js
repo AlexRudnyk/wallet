@@ -47,6 +47,8 @@ const transactionsSlice = createSlice({
           item => action.payload._id !== item._id
         );
         state.transactions = res;
+        state.isRefreshing = false;
+        state.error = false;
       })
       .addCase(deleteTransaction.rejected, handleRejected);
   },
