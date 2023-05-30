@@ -79,6 +79,7 @@ export const ModalAddTransactions = ({ onClose, onSubmit }) => {
                   onClick={e => {
                     if (e.currentTarget === e.target) {
                       setChecked(!checked);
+                      setFieldValue('type', type);
                     }
                   }}
                 >
@@ -121,6 +122,7 @@ export const ModalAddTransactions = ({ onClose, onSubmit }) => {
                   onClick={e => {
                     if (e.currentTarget === e.target) {
                       setChecked(!checked);
+                      setFieldValue('type', type);
                     }
                   }}
                 >
