@@ -5,6 +5,22 @@ export const colorCategory = category => {
       categoryName: 'house',
     },
     {
+      categoryColor: '#f2f23d',
+      categoryName: 'utilities',
+    },
+    {
+      categoryColor: '#f23de3',
+      categoryName: 'health',
+    },
+    {
+      categoryColor: '#3df285',
+      categoryName: 'clothes',
+    },
+    {
+      categoryColor: '#4ff23d',
+      categoryName: 'goods',
+    },
+    {
       categoryColor: '#FFF1CB',
       categoryName: 'children',
     },

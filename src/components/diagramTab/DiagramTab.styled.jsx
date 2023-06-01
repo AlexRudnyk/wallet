@@ -80,3 +80,9 @@ export const Form = styled.form`
     width: 395px;
   }
 `;
+
+export const SelectOption = styled.option`
+  font-family: 'Circe', sans-serif;
+  font-size: ${p => p.theme.fontSizes[3]};
+  line-height: ${p => p.theme.lineHeights.logo};
+`;

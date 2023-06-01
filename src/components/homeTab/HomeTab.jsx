@@ -1,13 +1,15 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { setBalance } from 'redux/auth/slice';
 import { TabletAndDeskMarkup } from './tabletAndDeskMarkup';
 import Media from 'react-media';
 import { Text } from './HomeTab.styled';
 import { MobileMarkup } from './mobileMarkup';
+import { selectIsRefreshing } from 'redux/transactions/selectors';
 
 export const HomeTab = ({ transactionsList }) => {
   const dispatch = useDispatch();
+  const isRefreshing = useSelector(selectIsRefreshing);
 
   function formatDate(date) {
     const dateToObj = new Date(date);
@@ -30,7 +32,7 @@ export const HomeTab = ({ transactionsList }) => {
     <Media queries={{ mobile: { maxWidth: 767.98 } }}>
       {matches =>
         matches.mobile ? (
-          transactionsList.length === 0 ? (
+          !isRefreshing && transactionsList.length === 0 ? (
             <Text>There are no transactions yet</Text>
           ) : (
             <MobileMarkup
@@ -39,7 +41,7 @@ export const HomeTab = ({ transactionsList }) => {
               updateBalance={updateBalance}
             />
           )
-        ) : transactionsList.length === 0 ? (
+        ) : !isRefreshing && transactionsList.length === 0 ? (
           <Text>There are no transactions yet</Text>
         ) : (
           <TabletAndDeskMarkup

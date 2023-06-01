@@ -2,6 +2,8 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { useEffect, useState } from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import { Loader } from 'components/loader';
+import { useSelector } from 'react-redux';
+import { selectIsRefreshing } from 'redux/categories/selectors';
 import {
   Container,
   Label,
@@ -18,6 +20,8 @@ export const Chart = ({ tableCategories = [], tableExpenseSum = 0 }) => {
   const [categoryColor, setCategoryColor] = useState(null);
   const [categorySum, setCategorySum] = useState(null);
 
+  const isRefreshing = useSelector(selectIsRefreshing);
+
   useEffect(() => {
     if (tableCategories) {
       setCategoryName(tableCategories.map(item => item.categoryName));
@@ -29,6 +33,10 @@ export const Chart = ({ tableCategories = [], tableExpenseSum = 0 }) => {
   const [chartData, setChartData] = useState({
     labels: [
       'House',
+      'Health',
+      'Goods',
+      'Utilities',
+      'Clothes',
       'Food',
       'Children',
       'Education',
@@ -81,11 +89,14 @@ export const Chart = ({ tableCategories = [], tableExpenseSum = 0 }) => {
     },
   });
 
-  return (
+  return isRefreshing ? (
+    <ChartContainer>
+      <Loader color="#4a56e2" size="100px" />
+    </ChartContainer>
+  ) : (
     <Container>
       <Label>Statistics</Label>
       <ChartContainer>
-        {!tableCategories && <Loader color="#4a56e2" size="100px" />}
         {categorySum?.length === 0 && (
           <NotFoundImg src={noDataFound} alt="Oops, something is wrong" />
         )}

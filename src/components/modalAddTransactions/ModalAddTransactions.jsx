@@ -135,7 +135,11 @@ export const ModalAddTransactions = ({ onClose, onSubmit }) => {
                     Choose a category
                   </SelectOption>
                   <SelectOption value="house">House</SelectOption>
+                  <SelectOption value="utilities">Utilities</SelectOption>
                   <SelectOption value="food">Food</SelectOption>
+                  <SelectOption value="health">Health</SelectOption>
+                  <SelectOption value="clothes">Clothes</SelectOption>
+                  <SelectOption value="goods">Goods</SelectOption>
                   <SelectOption value="children">Children</SelectOption>
                   <SelectOption value="education">Education</SelectOption>
                   <SelectOption value="sports">Sports</SelectOption>
