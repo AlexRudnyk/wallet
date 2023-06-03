@@ -41,7 +41,7 @@ export const ExpensesList = ({
                   ></ExpensesColor>
                   <TableText>{categoryName}</TableText>
                 </ExpensesItemWrapper>
-                <div>{categorySum}</div>
+                <div>{categorySum.toFixed(2)}</div>
               </ExpensesTableItem>
             );
           }
