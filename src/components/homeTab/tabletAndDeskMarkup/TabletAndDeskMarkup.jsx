@@ -68,7 +68,7 @@ export const TabletAndDeskMarkup = ({
               </TableItemCommentContainer>
               <TableItemSumContainer>{transaction.sum}</TableItemSumContainer>
               <TableItemBalanceContainer>
-                {transaction.balance}
+                {transaction.balance.toFixed(2)}
               </TableItemBalanceContainer>
               <DelBtn
                 type="button"

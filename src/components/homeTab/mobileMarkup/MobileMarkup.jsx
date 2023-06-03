@@ -55,7 +55,7 @@ export const MobileMarkup = ({
               <TransactionsItemWrapper type={transaction.type}>
                 <TransactionsItemText>Balance</TransactionsItemText>
                 <TransactionsItemData>
-                  {transaction.balance}
+                  {transaction.balance.toFixed(2)}
                 </TransactionsItemData>
               </TransactionsItemWrapper>
               <DelBtnWrapper>
